@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: peter-evans/create-or-update-comment@v2
+      - uses: peter-evans/create-or-update-comment@v4
         id: couc
         with:
           body: ⌛ Deploy Preview - Build in Progress
@@ -44,7 +44,7 @@ jobs:
         shell: bash
 
       - name: comment Preview Ready
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v4
         with:
           body: |
             ✔️ Deploy Preview for Ready!
@@ -55,7 +55,7 @@ jobs:
           token: ${{ secrets.BOT }}
 
       - if: ${{ failure() }}
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v4
         with:
           body: |
             ❌ Deploy Preview failed
