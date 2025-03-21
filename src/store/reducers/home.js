@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 var initialState = {
   slides: {
-    count: 2,
+    count: 3,
     list: {}
   },
   apps: {},
