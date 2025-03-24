@@ -42,7 +42,7 @@
 }
 
 .divider {
-    border: solid 0.5px rgb(211, 211, 211);
+    border-top: solid 1px rgb(211, 211, 211);
     margin: 18px 12px 
 }
 //ALBUM
@@ -56,8 +56,13 @@
     padding: 4px 12px;
 }
 .album {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
     h5{ 
         font-size: 1.4rem;
+        text-align: start;
     }
     p {
         color: rgb(137, 137, 137);
@@ -67,4 +72,7 @@
 }
 .photoAlbum {
     border-radius: 6px;
+}
+.albumTitle {
+    text-transform: capitalize;
 }

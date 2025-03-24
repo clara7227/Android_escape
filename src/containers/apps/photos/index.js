@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { styled } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
 
-import { Icon, Image, LazyComponent } from 'components/utils';
-import { dispatchAction, dispatchAct } from 'store/actions';
+import { Icon, Image, LazyComponent } from "components/utils";
+import { dispatchAction, dispatchAct } from "store/actions";
 import { Button } from "@mui/material";
 
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
@@ -14,16 +14,22 @@ import media from "./media.json";
 import "./photos.scss";
 
 export const PhotosApp = () => {
-  const app = useSelector(state => state.home.apps.photos || {});
-  const home = useSelector(state => state.home);
+  const app = useSelector((state) => state.home.apps.photos || {});
+  const home = useSelector((state) => state.home);
   const show = home.ishome == false && home.stack.at(-1) == app.payload;
 
-  return <AppContainer app={app} show={show} />
-}
+  return <AppContainer app={app} show={show} />;
+};
+
+// indice:
+// 1. filtro de fotos
+// 2. funcion renderizado de bloques de filtrado de fotos según el "state" de activePage
+// 3. funciones de los distintos bloques de fotos filtradas, por dia, album
+// 4. renderizado de la app, con botones de cambio de estado
 
 const AppContainer = ({ app, show }) => {
   const clstring = `${app.payload}-wrapper`;
-  const [activeButton, setActiveButton] = useState("photos"); // "photos" es el estado inicial
+  const [activePage, setactivePage] = useState("photos"); // "photos" es el estado inicial
 
   const TextButton = styled(Button)(({ theme }) => ({
     padding: "6px 16px",
@@ -31,76 +37,99 @@ const AppContainer = ({ app, show }) => {
       backgroundColor: red,
     },
   }));
+  //1. fotos filtradas
+  //por album
+  let cameraPhotos = media.photos.filter((photo) => photo.album === "camera");
+  let favouritePhotos = media.photos.filter(
+    (photo) => photo.favourite === "true"
+  );
+  let screenShots = media.photos.filter(
+    (photo) => photo.album === "screenshots"
+  );
+  let customAlbum = media.photos.filter(
+    (photo) => photo.album === "customAlbum1"
+  );
 
-  let cameraPhotos = media.photos.filter(photo => photo.album === "camera")
-  let todaysPhotos = media.photos.filter(photo => photo.date === "today")
+  //por tiempo
+  let todaysPhotos = media.photos.filter((photo) => photo.date === "today");
+  let yesterdaysPhotos = media.photos.filter(
+    (photo) => photo.date === "yesterday"
+  );
+  let thisMonthPhotos = media.photos.filter(
+    (photo) => photo.date === "thisMonth"
+  );
+  let longAgoPhotos = media.photos.filter((photo) => photo.date === "longAgo");
 
-  let cameraPhotosRender = () => {
-    console.log(cameraPhotos);
-  }
-
-  const renderAlbums = () => {
-    return <Albums />
-  }
-  const renderPhotosDays = () => {
-    return <PhotosDays />;
-  }
+  // 2.
   const renderContent = () => {
     {
-      console.log(activeButton)
-      switch (activeButton) {
+      console.log(activePage);
+      switch (activePage) {
         case "albums":
-          renderAlbums();
-          break;
-        case "photos":
-          renderPhotosDays();
-          break;
+          return <Albums />;
+        case "photos" || "all":
+          return <PhotosDays />;
+        case "camera":
+        case "favourites":
+        case "screenshots":
         case "albumCustom":
-          <Albums />;
-          break;
-        case "albums":
-          <Albums />;
-          break;
+          return <Album activePage={activePage} />;
+
+        default:
+          return <PhotosDays />;
       }
     }
-
-  }
+  };
 
   const PhotosDays = () => {
-    // console.log(media.photos[1].favourite + " aquis1");
-    // console.log(media.photos[1].date + " aquis");
-    // console.log(media.photos[1].src + " aquis");
-
-    // filtro por dia
-    // filtro por album 
-
     return (
       <div className="containerDaysPhotos">
-
         <h6> Today</h6>
         <div className="containerGridPhotos">
           {todaysPhotos.map((photo, i) => {
-
             return (
-              <object className="photo" data={photo.src} type="image/jpeg"></object>
-            )
-          })
-          }
+              <object
+                className="photo"
+                data={photo.src}
+                type="image/jpeg"
+              ></object>
+            );
+          })}
         </div>
         <h6> Yesterday</h6>
         <div className="containerGridPhotos">
-          {media.photos.map((photo, i) => {
+          {yesterdaysPhotos.map((photo, i) => {
             return (
-              <object className="photo" data={photo.src} type="image/jpeg"></object>
-            )
+              <object
+                className="photo"
+                data={photo.src}
+                type="image/jpeg"
+              ></object>
+            );
           })}
         </div>
         <h6> This month</h6>
         <div className="containerGridPhotos">
-          {media.photos.yesterday.map((photo, i) => {
+          {thisMonthPhotos.map((photo, i) => {
             return (
-              <object className="photo" data={photo.src} type="image/jpeg"></object>
-            )
+              <object
+                className="photo"
+                data={photo.src}
+                type="image/jpeg"
+              ></object>
+            );
+          })}
+        </div>
+        <h6> Long ago</h6>
+        <div className="containerGridPhotos">
+          {longAgoPhotos.map((photo, i) => {
+            return (
+              <object
+                className="photo"
+                data={photo.src}
+                type="image/jpeg"
+              ></object>
+            );
           })}
         </div>
       </div>
@@ -110,49 +139,102 @@ const AppContainer = ({ app, show }) => {
     return (
       <div className="mainAlbumsContainer">
         <div className="albumsContainer">
-          <button className="album" onClick="">
-            <div className="photo photoAlbum"></div>
-            <h5>Album title</h5>
-            <p className="numberPhotos"> 3499 </p>
+          <button className="album" onClick={() => setactivePage("all")}>
+            <object
+              className="photo photoAlbum "
+              data={media.photos[0].src}
+              type="image/jpeg"
+            ></object>
+            <h5>All</h5>
+            <p className="numberPhotos"> {media.photos.length} </p>
           </button>
-          <div className="album">
-            <div className="photo"></div>
-            <h5>Album title</h5>
-            <p className="numberPhotos">990</p>
-          </div>
-          <div className="album">
-            <div className="photo"></div>
-            <h5>Album title</h5>
-            <p className="numberPhotos">889</p>
-          </div>
-          <div className="album">
-            <div className="photo"></div>
-            <h5>Album title</h5>
-            <p className="numberPhotos">889</p>
-          </div>
+          <button className="album" onClick={() => setactivePage("camera")}>
+            <object
+              className="photo photoAlbum "
+              data={cameraPhotos[0].src}
+              type="image/jpeg"
+            ></object>
+            <h5>Camera</h5>
+            <p className="numberPhotos"> {cameraPhotos.length} </p>
+          </button>
+          <button
+            className="album "
+            onClick={() => setactivePage("favourites")}
+          >
+            <object
+              className="photo photoAlbum "
+              data={favouritePhotos[0].src}
+              type="image/jpeg"
+            ></object>
+            <h5>Favourites</h5>
+            <p className="numberPhotos">{favouritePhotos.length} </p>
+          </button>
+          <button
+            className="album"
+            onClick={() => setactivePage("screenshots")}
+          >
+            <object
+              className="photo photoAlbum "
+              data={screenShots[0].src}
+              type="image/jpeg"
+            ></object>
+            <h5>ScreenShots</h5>
+            <p className="numberPhotos">{screenShots.length}</p>
+          </button>
         </div>
 
         <div className="divider"></div>
         <div className="albumsContainer">
-          <div className="album">
-            <div className="photo photoAlbum"></div>
-            <h5>Album title</h5>
-            <p className="numberPhotos"> 3499 </p>
-          </div>
-          <div className="album">
-            <div className="photo"></div>
-            <h5>Album title</h5>
-            <p className="numberPhotos">990</p>
-          </div>
-          <div className="album">
-            <div className="photo"></div>
-            <h5>Album title</h5>
-            <p className="numberPhotos">889</p>
-          </div>
+          <button
+            className="album"
+            onClick={() => setactivePage("albumCustom")}
+          >
+            <object
+              className="photo photoAlbum "
+              data={customAlbum[0].src}
+              type="image/jpeg"
+            ></object>
+            <h5>Custom album</h5>
+            <p className="numberPhotos"> {customAlbum.length} </p>
+          </button>
         </div>
       </div>
     );
   };
+
+  const Album = (activePage) => {
+    console.log(activePage.activePage);
+    return (
+      <div>
+        <h5 className="albumTitle"> {activePage.activePage}</h5>
+        <div className="containerGridPhotos">
+          {media.photos
+              .filter((photo) => photo.album === activePage.activePage)
+              .map((photo, i) => {
+                return (
+                  <object
+                    className="photo"
+                    data={photo.src}
+                    type="image/jpeg"
+                  ></object>
+                );
+              })}
+          {activePage.activePage === "favourites" &&
+          favouritePhotos.map((photo, i) => {
+                return (
+                  <object
+                    className="photo"
+                    data={photo.src}
+                    type="image/jpeg"
+                  ></object>
+                );
+              })
+              }
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className={"app-wrapper " + clstring} id={clstring} data-open={show}>
       {/* <div className="app-icon-container">
@@ -166,14 +248,14 @@ const AppContainer = ({ app, show }) => {
         <div className="tabsContainer">
           <>
             <TextButton
-              variant={activeButton === "photos" ? "contained" : "text"}
-              onClick={() => setActiveButton("photos")}
+              variant={activePage === "photos" ? "contained" : "text"}
+              onClick={() => setactivePage("photos")}
             >
               Photos
             </TextButton>
             <TextButton
-              variant={activeButton === "albums" ? "contained" : "text"}
-              onClick={() => setActiveButton("albums")}
+              variant={activePage === "albums" ? "contained" : "text"}
+              onClick={() => setactivePage("albums")}
             >
               Albums
             </TextButton>
@@ -184,9 +266,6 @@ const AppContainer = ({ app, show }) => {
         </div>
       </div>
       {renderContent()}
-      {/* {activeButton === "albums" ? <Albums /> : <PhotosDays />} */}
-
-{renderPhotosDays()}
     </div>
   );
-}
+};

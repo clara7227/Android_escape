@@ -1,3 +1,4 @@
+
 {
     "albums": {
         "album1": {
@@ -8,19 +9,20 @@
     },
     "photos": [
         {
-            "src": "img/asset/photos/uno.jpg",
-            "title": "",
-            "date": "today",
-            "favourite": "true",
-            "album": "camera"
-        },
-        {
             "src": "img/asset/photos/dos.jpg",
             "title": "",
             "date": "today",
             "favourite": "false",
             "album": "camera"
         },
+        {
+            "src": "img/asset/photos/uno.jpg",
+            "title": "",
+            "date": "today",
+            "favourite": "false",
+            "album": "camera"
+        },
+       
         {
             "src": "img/asset/photos/tres.jpg",
             "title": "",
@@ -64,10 +66,87 @@
             "album": "screenshots"
         },
         {
-            "src": "img/asset/photos/nueve.jpg",
+            "src": "img/asset/photos/ocho.jpg",
             "title": "",
             "date": "thisMonth",
-            "favourite": "true",
+            "favourite": "false",
+            "album": "screenshots"
+        },
+        {
+            "src": "img/asset/photos/ocho.jpg",
+            "title": "",
+            "date": "thisMonth",
+            "favourite": "false",
+            "album": "screenshots"
+        },
+        {
+            "src": "img/asset/photos/ocho.jpg",
+            "title": "",
+            "date": "thisMonth",
+            "favourite": "false",
+            "album": "screenshots"
+        },
+        {
+            "src": "img/asset/photos/ocho.jpg",
+            "title": "",
+            "date": "thisMonth",
+            "favourite": "false",
+            "album": "screenshots"
+        },
+        {
+            "src": "img/asset/photos/ocho.jpg",
+            "title": "",
+            "date": "thisMonth",
+            "favourite": "false",
+            "album": "screenshots"
+        },
+        {
+            "src": "img/asset/photos/ocho.jpg",
+            "title": "",
+            "date": "thisMonth",
+            "favourite": "false",
+            "album": "screenshots"
+        },
+        {
+            "src": "img/asset/photos/ocho.jpg",
+            "title": "",
+            "date": "thisMonth",
+            "favourite": "false",
+            "album": "screenshots"
+        },
+        {
+            "src": "img/asset/photos/ocho.jpg",
+            "title": "",
+            "date": "thisMonth",
+            "favourite": "false",
+            "album": "screenshots"
+        },
+        {
+            "src": "img/asset/photos/ocho.jpg",
+            "title": "",
+            "date": "thisMonth",
+            "favourite": "false",
+            "album": "screenshots"
+        },
+        {
+            "src": "img/asset/photos/ocho.jpg",
+            "title": "",
+            "date": "thisMonth",
+            "favourite": "false",
+            "album": "screenshots"
+        },
+        {
+            "src": "img/asset/photos/ocho.jpg",
+            "title": "",
+            "date": "thisMonth",
+            "favourite": "false",
+            "album": "screenshots"
+        },
+        {
+            "src": "img/asset/photos/ocho.jpg",
+            "title": "",
+            "date": "thisMonth",
+            "favourite": "false",
             "album": "screenshots"
         },
         {
@@ -82,7 +161,63 @@
             "title": "",
             "date": "longAgo",
             "favourite": "true",
-            "album": "album1"
+            "album": "albumCustom"
+        },
+        {
+            "src": "img/asset/photos/nueve.jpg",
+            "title": "",
+            "date": "longAgo",
+            "favourite": "true",
+            "album": "albumCustom"
+        },
+        {
+            "src": "img/asset/photos/nueve.jpg",
+            "title": "",
+            "date": "longAgo",
+            "favourite": "false",
+            "album": "albumCustom"
+        },
+        {
+            "src": "img/asset/photos/nueve.jpg",
+            "title": "",
+            "date": "longAgo",
+            "favourite": "false",
+            "album": "albumCustom"
+        },
+        {
+            "src": "img/asset/photos/nueve.jpg",
+            "title": "",
+            "date": "longAgo",
+            "favourite": "false",
+            "album": "customAlbum1"
+        },
+        {
+            "src": "img/asset/photos/nueve.jpg",
+            "title": "",
+            "date": "longAgo",
+            "favourite": "true",
+            "album": "customAlbum1"
+        },
+        {
+            "src": "img/asset/photos/nueve.jpg",
+            "title": "",
+            "date": "longAgo",
+            "favourite": "true",
+            "album": "customAlbum1"
+        },
+        {
+            "src": "img/asset/photos/nueve.jpg",
+            "title": "",
+            "date": "longAgo",
+            "favourite": "true",
+            "album": "customAlbum1"
+        },
+        {
+            "src": "img/asset/photos/nueve.jpg",
+            "title": "",
+            "date": "longAgo",
+            "favourite": "true",
+            "album": "customAlbum1"
         }
     ]
 }
