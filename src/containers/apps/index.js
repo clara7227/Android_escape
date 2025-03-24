@@ -8,3 +8,4 @@ export * from './whatsapp';
 export * from './youtube';
 export * from './playstore';
 export * from './google';
+export * from "./photos"

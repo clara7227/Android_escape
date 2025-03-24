@@ -93,7 +93,7 @@ const AppWrapper = ({openedapp})=>{
         var appidx = opened_apps.indexOf(openedapp)
         appScroll.current.slickGoTo(appidx, true)
       }
-    }
+    } 
   }, [stack])
 
   return (

@@ -1,10 +1,10 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const walls = ["default.jpg"]
 const intialState = {wps: 0,src: walls[0]}
 
 const wallSlice = createSlice({
-  name: "wallaper",
+  name: "wallpaper",
   initialState: intialState,
   reducers: {
     setWall: (state, action) => {

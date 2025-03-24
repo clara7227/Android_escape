@@ -56,7 +56,7 @@ export const Icon = (props) => {
   });
 
   var classname = `uicon prtclk ${props.className || ""}`.trim()
-  var styles = {
+  var styles = { 
     borderRadius: props.radii
   }
 

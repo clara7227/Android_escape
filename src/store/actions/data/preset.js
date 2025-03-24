@@ -43,7 +43,7 @@ export const page4wid = [
 ]
 
 const page1arr = [
-  "playstore", "youtube", "google", "unescape"
+  "playstore", "youtube", "google", "photos"
 ]
 
 const page2arr = [
