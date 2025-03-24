@@ -55,6 +55,7 @@ function Home() {
 
   return (
     <div className={"viewport " + viewportclass}>
+      
       <StatusBar bg={openedapp && "var(--statusbg)"} invert={home.ishome?false:null}/>
       <QuickPanel/>
       <div className='home'>

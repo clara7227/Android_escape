@@ -1,0 +1,70 @@
+* {
+    border: pink
+}
+
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 12px
+}
+
+.tabsContainer {
+    display: flex;
+    justify-content: space-between;
+
+}
+.tabItem {
+    color: #222222;
+}
+
+//DAYSPHOTOS
+.containerDaysPhotos {
+  h6 {
+    padding: 4px 12px 
+  }
+}
+.containerGridPhotos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: 3px
+}
+.photo {
+    aspect-ratio: 1/1;
+   
+    border: 0.5px white solid;
+    object-fit: cover;
+    width: 108px;
+    background-image: url(../../../../public/img/asset/photos/placeholder.jpg);
+    background-size: 180px 108px;
+    img {
+       
+    }
+}
+
+.divider {
+    border: solid 0.5px rgb(211, 211, 211);
+    margin: 18px 12px 
+}
+//ALBUM
+.mainAlbumsContainer {
+    padding: 28px 12px 4px;
+}
+.albumsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.6rem;
+    padding: 4px 12px;
+}
+.album {
+    h5{ 
+        font-size: 1.4rem;
+    }
+    p {
+        color: rgb(137, 137, 137);
+        font-weight: 300
+    }
+
+}
+.photoAlbum {
+    border-radius: 6px;
+}
