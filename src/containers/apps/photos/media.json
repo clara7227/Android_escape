@@ -1,0 +1,88 @@
+{
+    "albums": {
+        "album1": {
+            "src": "//1er objeto de fotos",
+            "title": "",
+            "number": ""
+        }
+    },
+    "photos": [
+        {
+            "src": "img/asset/photos/uno.jpg",
+            "title": "",
+            "date": "today",
+            "favourite": "true",
+            "album": "camera"
+        },
+        {
+            "src": "img/asset/photos/dos.jpg",
+            "title": "",
+            "date": "today",
+            "favourite": "false",
+            "album": "camera"
+        },
+        {
+            "src": "img/asset/photos/tres.jpg",
+            "title": "",
+            "date": "today",
+            "favourite": "false",
+            "album": "camera"
+        },
+        {
+            "src": "img/asset/photos/cuatro.jpg",
+            "title": "",
+            "date": "yesterday",
+            "favourite": "false",
+            "album": "camera"
+        },
+        {
+            "src": "img/asset/photos/cinco.jpg",
+            "title": "",
+            "date": "yesterday",
+            "favourite": "false",
+            "album": "camera"
+        },
+        {
+            "src": "img/asset/photos/seis.jpg",
+            "title": "",
+            "date": "yesterday",
+            "favourite": "false",
+            "album": "camera"
+        },
+        {
+            "src": "img/asset/photos/siete.jpg",
+            "title": "",
+            "date": "yesterday",
+            "favourite": "true",
+            "album": "camera"
+        },
+        {
+            "src": "img/asset/photos/ocho.jpg",
+            "title": "",
+            "date": "thisMonth",
+            "favourite": "false",
+            "album": "screenshots"
+        },
+        {
+            "src": "img/asset/photos/nueve.jpg",
+            "title": "",
+            "date": "thisMonth",
+            "favourite": "true",
+            "album": "screenshots"
+        },
+        {
+            "src": "img/asset/photos/ocho.jpg",
+            "title": "",
+            "date": "thisMonth",
+            "favourite": "true",
+            "album": "screenshots"
+        },
+        {
+            "src": "img/asset/photos/nueve.jpg",
+            "title": "",
+            "date": "longAgo",
+            "favourite": "true",
+            "album": "album1"
+        }
+    ]
+}
