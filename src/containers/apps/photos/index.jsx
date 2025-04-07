@@ -9,6 +9,7 @@ import { Button } from "@mui/material";
 
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import media from "./media.json";
 import "./photos.scss";
@@ -26,10 +27,12 @@ export const PhotosApp = () => {
 // 2. funcion renderizado de bloques de filtrado de fotos según el "state" de activePage
 // 3. funciones de los distintos bloques de fotos filtradas, por dia, album
 // 4. renderizado de la app, con botones de cambio de estado
+// 5. componente menu - albums/ fotos
 
 const AppContainer = ({ app, show }) => {
   const clstring = `${app.payload}-wrapper`;
   const [activePage, setactivePage] = useState("photos"); // "photos" es el estado inicial
+  const [singleView, setsingleView] = useState(false); // estado para vista de una sola foto
 
   const TextButton = styled(Button)(({ theme }) => ({
     padding: "6px 16px",
@@ -68,7 +71,7 @@ const AppContainer = ({ app, show }) => {
         case "albums":
           return <Albums />;
         case "photos" || "all":
-          return <PhotosDays />;
+          return <Photos />;
         case "camera":
         case "favourites":
         case "screenshots":
@@ -76,14 +79,17 @@ const AppContainer = ({ app, show }) => {
           return <Album activePage={activePage} />;
 
         default:
-          return <PhotosDays />;
+          return <Photos />;
       }
     }
   };
 
-  const PhotosDays = () => {
+  const Photos = () => {
     return (
-      <div className="containerDaysPhotos">
+  <>
+        <MenuMain />
+      
+      <div className="containerDaysPhotos container-page">
         <h6> Today</h6>
         <div className="containerGridPhotos">
           {todaysPhotos.map((photo, i) => {
@@ -133,11 +139,16 @@ const AppContainer = ({ app, show }) => {
           })}
         </div>
       </div>
+     
+      </>
     );
   };
   const Albums = () => {
     return (
-      <div className="mainAlbumsContainer">
+      <>
+      <MenuMain />
+
+      <div className="mainAlbumsContainer container-page">
         <div className="albumsContainer">
           <button className="album" onClick={() => setactivePage("all")}>
             <object
@@ -199,48 +210,54 @@ const AppContainer = ({ app, show }) => {
           </button>
         </div>
       </div>
+      </>
     );
   };
 
-  const Album = (activePage) => {
-    console.log(activePage.activePage);
+  const Album = ({activePage}) => {
+    console.log(activePage);
     return (
+      <>
+       <MenuAlbum activePage={activePage} /> 
       <div>
-        <h5 className="albumTitle"> {activePage.activePage}</h5>
-        <div className="containerGridPhotos">
+        <h5 className="albumTitle"> {activePage}</h5>
+        <div className="containerGridPhotos container-page">
+          {/* mapeo de fotos por album */}
           {media.photos
-              .filter((photo) => photo.album === activePage.activePage)
-              .map((photo, i) => {
-                return (
-                  <object
-                    className="photo"
-                    data={photo.src}
-                    type="image/jpeg"
-                  ></object>
-                );
-              })}
-          {activePage.activePage === "favourites" &&
-          favouritePhotos.map((photo, i) => {
-                return (
-                  <object
-                    className="photo"
-                    data={photo.src}
-                    type="image/jpeg"
-                  ></object>
-                );
-              })
-              }
+            .filter((photo) => photo.album === activePage)
+            .map((photo, i) => {
+              return (
+                <object
+                  className="photo"
+                  data={photo.src}
+                  type="image/jpeg"
+                  onClick={() => setsingleView(true)}
+                  key={i}
+                ></object>
+              );
+            })}
+          {activePage === "favourites" &&
+            favouritePhotos.map((photo, i) => {
+              return (
+                <object
+                  className="photo"
+                  data={photo.src}
+                  type="image/jpeg"
+                ></object>
+              );
+            })}
+        </div>
+        <div className={singleView == true ? "singlePhotoView" : ""}>
+          singlePhoto
+          <button>Back</button>
         </div>
       </div>
+      </>
     );
   };
-
-  return (
-    <div className={"app-wrapper " + clstring} id={clstring} data-open={show}>
-      {/* <div className="app-icon-container">
-        <Icon className="mdShad" src={"apps/" + app.icon} w={72} action="home/setHome"/>
-        <span>Playstore</span>
-      </div> */}
+  // 5.componente menu - albums/ fotos
+  const MenuMain = () => {
+    return (
       <div className="navBar">
         <div>
           <SearchOutlinedIcon />
@@ -265,7 +282,32 @@ const AppContainer = ({ app, show }) => {
           <MoreVertOutlinedIcon />
         </div>
       </div>
-      {renderContent()}
+    );
+    
+  };
+  // 5.componente menu - albums/ fotos
+  const MenuAlbum = ({activePage}) => {
+    return (
+      <div className="navBar">
+        <div className="backIcon">
+          <ArrowBackIcon          
+          onClick={() => setactivePage("albums")}
+          />
+        </div>
+        <h6>
+
+          {activePage}
+        </h6>
+        <div>
+          <MoreVertOutlinedIcon />
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className={"app-wrapper " + clstring} id={clstring} data-open={show}>
+      <div className="app-inner-wrapper photo-page">{renderContent()}</div>
     </div>
   );
 };

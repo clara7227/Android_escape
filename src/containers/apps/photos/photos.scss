@@ -1,11 +1,26 @@
 * {
     border: pink
 }
+.photo-page {
+    width: 100%;
+    flex-grow: 1;
+    overflow-y: scroll;  
+   
+}
+
+.container-page {
+    margin-top: 60px
+}
 
 .navBar {
+    // box-shadow: 4px 0px 12px 6px #00000033;
+    background: white;
     display: flex;
     justify-content: space-between;
-    padding: 4px 12px
+    padding: 8px 12px;
+    position: fixed;
+    width: 440px;
+    align-items: center;
 }
 
 .tabsContainer {
@@ -75,4 +90,14 @@
 }
 .albumTitle {
     text-transform: capitalize;
+}
+//SINGLE PHOTO VIEW
+.singlePhotoView {
+    background: red; 
+    height: 100vh; 
+    position: absolute; 
+    width: 440px
+}
+.backIcon {
+    cursor: pointer;
 }
