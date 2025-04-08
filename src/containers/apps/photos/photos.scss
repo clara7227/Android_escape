@@ -96,15 +96,25 @@
 }
 //SINGLE PHOTO VIEW
 .singlePhotoView {
-    background: red; 
+    background: black; 
     height: 100vh; 
-    position: absolute;
+    position: fixed;
     top: 0px; 
     width: 440px
+}
+.photoSingle {
+    width: 440px;
+    height: 440px;
+    object-fit: cover;
+
 }
 .display-none {
     display: none
 }
 .backIcon {
     cursor: pointer;
+}
+.backIconSingle {
+    cursor: pointer;
+    color: white
 }
