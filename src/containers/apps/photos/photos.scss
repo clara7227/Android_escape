@@ -21,6 +21,9 @@
     position: fixed;
     width: 440px;
     align-items: center;
+    h6 {
+        text-transform: capitalize;
+    }
 }
 
 .tabsContainer {
@@ -95,8 +98,12 @@
 .singlePhotoView {
     background: red; 
     height: 100vh; 
-    position: absolute; 
+    position: absolute;
+    top: 0px; 
     width: 440px
+}
+.display-none {
+    display: none
 }
 .backIcon {
     cursor: pointer;

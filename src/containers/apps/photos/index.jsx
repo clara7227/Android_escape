@@ -33,6 +33,7 @@ const AppContainer = ({ app, show }) => {
   const clstring = `${app.payload}-wrapper`;
   const [activePage, setactivePage] = useState("photos"); // "photos" es el estado inicial
   const [singleView, setsingleView] = useState(false); // estado para vista de una sola foto
+  const [initialImage, setinitialImage] = useState(""); // estado para guardar la imagen que se muestra en la pantalla single, según la imagen que se clicke.
 
   const TextButton = styled(Button)(({ theme }) => ({
     padding: "6px 16px",
@@ -219,21 +220,37 @@ const AppContainer = ({ app, show }) => {
     return (
       <>
        <MenuAlbum activePage={activePage} /> 
-      <div>
-        <h5 className="albumTitle"> {activePage}</h5>
-        <div className="containerGridPhotos container-page">
+      <div className="container-page"> 
+        <div className="containerGridPhotos">
           {/* mapeo de fotos por album */}
           {media.photos
             .filter((photo) => photo.album === activePage)
             .map((photo, i) => {
-              return (
+              
+              return (<>
+                <div className={singleView == true ? "singlePhotoView" : "display-none"}>
+                {console.log(initialImage + " consola") }
                 <object
                   className="photo"
-                  data={photo.src}
+                  data={initialImage}
                   type="image/jpeg"
                   onClick={() => setsingleView(true)}
                   key={i}
                 ></object>
+                <div className="backIcon">
+                <ArrowBackIcon          
+                onClick={() => setsingleView(false)}
+                />
+              </div>
+              </div>
+                <object
+                  className="photo"
+                  data={photo.src}
+                  type="image/jpeg"
+                  onClick={() => (setsingleView(true), setinitialImage(photo.src))}
+                  key={i}
+                ></object>
+                </>
               );
             })}
           {activePage === "favourites" &&
@@ -247,10 +264,7 @@ const AppContainer = ({ app, show }) => {
               );
             })}
         </div>
-        <div className={singleView == true ? "singlePhotoView" : ""}>
-          singlePhoto
-          <button>Back</button>
-        </div>
+       
       </div>
       </>
     );
