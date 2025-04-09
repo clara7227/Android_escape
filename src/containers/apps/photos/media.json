@@ -22,7 +22,7 @@
             "favourite": "false",
             "album": "camera"
         },
-       
+    
         {
             "src": "img/asset/photos/tres.jpg",
             "title": "",
@@ -43,6 +43,13 @@
             "date": "yesterday",
             "favourite": "false",
             "album": "camera"
+        },
+        {
+            "src": "img/asset/photos/cinco.jpg",
+            "title": "",
+            "date": "yesterday",
+            "favourite": "false",
+            "album": "customAlbum2"
         },
         {
             "src": "img/asset/photos/seis.jpg",
@@ -77,6 +84,13 @@
             "title": "",
             "date": "thisMonth",
             "favourite": "false",
+            "album": "random_album"
+        },
+        {
+            "src": "img/asset/photos/ocho.jpg",
+            "title": "",
+            "date": "thisMonth",
+            "favourite": "false",
             "album": "screenshots"
         },
         {
@@ -183,6 +197,13 @@
             "date": "longAgo",
             "favourite": "false",
             "album": "albumCustom"
+        },
+        {
+            "src": "img/asset/photos/uno.jpg",
+            "title": "",
+            "date": "longAgo",
+            "favourite": "false",
+            "album": "random_album"
         },
         {
             "src": "img/asset/photos/nueve.jpg",

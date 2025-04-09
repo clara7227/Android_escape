@@ -82,6 +82,9 @@
         font-size: 1.4rem;
         text-align: start;
     }
+    .albumName {
+        word-break: break-all
+    }
     p {
         color: rgb(137, 137, 137);
         font-weight: 300

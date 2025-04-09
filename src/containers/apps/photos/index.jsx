@@ -44,16 +44,55 @@ const AppContainer = ({ app, show }) => {
   // const [initialImage, setinitialImage] = useState(""); // estado para guardar la imagen que se muestra en la pantalla single, según la imagen que se clicke.
   const [startIndex, setstartIndex] = useState(0); // estado para guardar el índice de la foto que se clickó en la vista de álbum, para mostrarla la primera en las slides
 
-  // array de álbumes
+  // *******ALL ALBUMS ********
+  // All albums array
   const albums = []
-
-
-  // crear un array que coja los álbums de media.json
+  // push al array "albums" los álbums de las fotos de media.json
   media.photos.forEach((photo) => {
     if (!albums.includes(photo.album)) {
       albums.push(photo.album);
-    } 
+    }
   })
+
+  // ******CUSTOM ALBUMS ONLY*******
+  // Custom albums array
+  let customAlbums = []
+  // push al array "customAlbums" los álbums que son custom
+  albums.map((album, i) => {
+    if (!["camera", "screenshots", "all"].includes(album)) {
+      customAlbums.push(album);
+    }
+  })
+
+
+  //*******MINIATURA DE ÁLBUMES, CREACIÓN DINÁMICA A PARTIR
+  // DE ÁLBUMES CREADOS ********//
+
+  let customAlbumsProps = []
+
+  customAlbums.forEach((customAlbum, i) => {
+    let album = []
+    media.photos.forEach((photo) => photo.album === customAlbum ?
+      album.push(photo) : "")
+
+    // añadir al objeto de album custom propiedades. 
+    customAlbumsProps[i] = {
+      name: customAlbum,
+      length: album.length,
+      src: album[0].src
+    }
+
+    return console.log(album + " aqui funciona el tema? " + customAlbum)
+
+  })
+  console.log(customAlbums)
+  console.log(customAlbumsProps, " aqui")
+  console.log(customAlbumsProps[0].name + " now here")
+  customAlbumsProps.map((customAlbum) => { return console.log(customAlbum + " olaaa") })
+  // añadir al array customAlbums algunas propiedades principales
+
+  console.log(customAlbums + " custom albumes aqui")
+  // console.log(albums + " albumes aqui")
 
   const TextButton = styled(Button)(({ theme }) => ({
     padding: "6px 16px",
@@ -63,7 +102,9 @@ const AppContainer = ({ app, show }) => {
   }));
   //1. fotos filtradas
   //por album
-  let cameraPhotos = media.photos.filter((photo) => photo.album === "camera");
+  let cameraPhotos = media.photos.filter(
+    (photo) => photo.album === "camera"
+  );
   let favouritePhotos = media.photos.filter(
     (photo) => photo.favourite === "true"
   );
@@ -74,6 +115,7 @@ const AppContainer = ({ app, show }) => {
     (photo) => photo.album === "customAlbum1"
   );
 
+  // console.log(screenShots + " screenshots album")
   //por tiempo
   let todaysPhotos = media.photos.filter((photo) => photo.date === "today");
   let yesterdaysPhotos = media.photos.filter(
@@ -88,20 +130,30 @@ const AppContainer = ({ app, show }) => {
   const renderContent = () => {
     {
       console.log(activePage);
-      switch (activePage) {
-        case "albums":
-          return <Albums />;
-        case "photos" || "all":
-          return <Photos />;
-        case "camera":
-        case "favourites":
-        case "screenshots":
-        case "albumCustom":
-          return <Album activePage={activePage} />;
+      // switch (activePage) {
+      //   case "albums":
+      //     return <Albums />;
+      //   case "photos" || "all":
+      //     return <Photos />;
+      //   case "camera":
+      //   case "favourites":
+      //   case "screenshots":
+      //   case "albumCustom":
+      //     return <Album activePage={activePage} />;
 
-        default:
-          return <Photos />;
-      }
+      //   default:
+      //     return <Photos />;
+      // }
+      if (activePage === "albums") {
+  
+          return <Albums />;} else if 
+          (activePage === "all" || activePage === "photos") {
+            return <Photos />;
+          } else {      
+            return <Album activePage={activePage} 
+            />;}
+
+      
     }
   };
 
@@ -113,19 +165,19 @@ const AppContainer = ({ app, show }) => {
         <div className="containerDaysPhotos container-page">
           <h6> Today</h6>
           <div className="containerGridPhotos">
-          {media.photos.map((photo, i) => {
+            {media.photos.map((photo, i) => {
               return (
                 <>
-                 {i === startIndex && <SinglePhoto />}
-                 { photo.date === "today" &&
-                <object
-                  className="photo"
-                  data={photo.src}
-                  type="image/jpeg"
-                  onClick={() => (setsingleView(true), setstartIndex(i))}
-                  key={i}
-                ></object> }
-                   </>
+                  {i === startIndex && <SinglePhoto />}
+                  {photo.date === "today" &&
+                    <object
+                      className="photo"
+                      data={photo.src}
+                      type="image/jpeg"
+                      onClick={() => (setsingleView(true), setstartIndex(i))}
+                      key={i}
+                    ></object>}
+                </>
               );
             })}
           </div>
@@ -134,16 +186,16 @@ const AppContainer = ({ app, show }) => {
             {media.photos.map((photo, i) => {
               return (
                 <>
-                {i === startIndex && <SinglePhoto />}
-                { photo.date === "yesterday" &&
-               <object
-                 className="photo"
-                 data={photo.src}
-                 type="image/jpeg"
-                 onClick={() => (setsingleView(true), setstartIndex(i))}
-                 key={i}
-               ></object>}
-                  </>
+                  {i === startIndex && <SinglePhoto />}
+                  {photo.date === "yesterday" &&
+                    <object
+                      className="photo"
+                      data={photo.src}
+                      type="image/jpeg"
+                      onClick={() => (setsingleView(true), setstartIndex(i))}
+                      key={i}
+                    ></object>}
+                </>
               );
             })}
           </div>
@@ -152,18 +204,18 @@ const AppContainer = ({ app, show }) => {
             {media.photos.map((photo, i) => {
               return (
                 <>
-                 {i === startIndex && <SinglePhoto />}
-                { photo.date === "thisMonth" &&
-               <object
-                 className="photo"
-                 data={photo.src}
-                 type="image/jpeg"
-                 onClick={() => (setsingleView(true), setstartIndex(i))}
-                 key={i}
-               ></object>}
-                 
-                  
-                   </>
+                  {i === startIndex && <SinglePhoto />}
+                  {photo.date === "thisMonth" &&
+                    <object
+                      className="photo"
+                      data={photo.src}
+                      type="image/jpeg"
+                      onClick={() => (setsingleView(true), setstartIndex(i))}
+                      key={i}
+                    ></object>}
+
+
+                </>
               );
             })}
           </div>
@@ -178,18 +230,18 @@ const AppContainer = ({ app, show }) => {
               // Se pasan por el mapeo todas las fotos, pero sólo se pintan
               // las que tienen la fecha "longAgo".
               return (
-    
+
                 <>
-                {i === startIndex && <SinglePhoto />}
-                {  photo.date === "longAgo" &&
-               <object
-                 className="photo"
-                 data={photo.src}
-                 type="image/jpeg"
-                 onClick={() => (setsingleView(true), setstartIndex(i))}
-                 key={i}
-               ></object>}
-                  </>
+                  {i === startIndex && <SinglePhoto />}
+                  {photo.date === "longAgo" &&
+                    <object
+                      className="photo"
+                      data={photo.src}
+                      type="image/jpeg"
+                      onClick={() => (setsingleView(true), setstartIndex(i))}
+                      key={i}
+                    ></object>}
+                </>
               );
             })}
           </div>
@@ -204,6 +256,7 @@ const AppContainer = ({ app, show }) => {
         <MenuMain />
 
         <div className="mainAlbumsContainer container-page">
+          {/* DEFAULT ALBUMS */}
           <div className="albumsContainer">
             <button className="album" onClick={() => setactivePage("all")}>
               <object
@@ -250,19 +303,50 @@ const AppContainer = ({ app, show }) => {
           </div>
 
           <div className="divider"></div>
+
+          {/* CUSTOM ALBUMS */}
           <div className="albumsContainer">
-            <button
-              className="album"
-              onClick={() => setactivePage("albumCustom")}
-            >
-              <object
-                className="photo photoAlbum "
-                data={customAlbum[0].src}
-                type="image/jpeg"
-              ></object>
-              <h5>Custom album</h5>
-              <p className="numberPhotos"> {customAlbum.length} </p>
-            </button>
+            {customAlbumsProps.map((album) => {
+                console.log(album.name, "nombre de album")
+              return (
+                <button
+                  className="album"
+                  onClick={() => setactivePage(album.name)}
+                >
+                  <object
+                    className="photo photoAlbum "
+                    data={album.src}
+                    type="image/jpeg"
+                  ></object>
+                  <h5 className="albumName">{album.name}</h5>
+                  <p className="numberPhotos"> {album.length} </p>
+                </button>
+              )
+            }
+
+            )
+            }
+            {
+
+              // ? media.photos.map((photo, i) => { photo.album === album
+              // return ( 
+              // <button
+              //   className="album"
+              //   onClick={() => setactivePage("albumCustom")}
+              // >
+              //   <object
+              //     className="photo photoAlbum "
+              //     data={customAlbum[0].src}
+              //     type="image/jpeg"
+              //   ></object>
+              //   <h5>Custom album</h5>
+              //   <p className="numberPhotos"> {customAlbum.length} </p>
+              // </button> )}
+              // : ""  )
+
+
+            }
+
           </div>
         </div>
       </>
@@ -381,47 +465,47 @@ const AppContainer = ({ app, show }) => {
           onSlideChange={() => console.log('slide change')}
           onSwiper={(swiper) => console.log(swiper)}
         >
-        
+
           {console.log(activePage + " pagina activa")}
 
 
           {/* MAPEO ÁLBUMES CON LA COMPROBACIÓN DE: SI LA PÁGINA ACTIVA COINCIDE 
           CON EL ÁLBUM, SE MUESTRA EL SIGUIENTE MAPEO DE FOTOS DE ESE ÁLBUM */}
-         {
-          activePage === "photos" &&    
-          media.photos.map((photo, i) => {
-            return (<>
-              <SwiperSlide >
-                <object
-                  key={i}
-                  className="photoSingle"
-                  data={photo.src}
-                  type="image/jpeg"
-                ></object>
-              </SwiperSlide>
-            </>
-            );
-          })
-         }
+          {
+            activePage === "photos" &&
+            media.photos.map((photo, i) => {
+              return (<>
+                <SwiperSlide >
+                  <object
+                    key={i}
+                    className="photoSingle"
+                    data={photo.src}
+                    type="image/jpeg"
+                  ></object>
+                </SwiperSlide>
+              </>
+              );
+            })
+          }
           {media.photos
-              .filter((photo) => photo.album === activePage)
-              .map((photo, i) => {
+            .filter((photo) => photo.album === activePage)
+            .map((photo, i) => {
 
-                return (<>
-                  <SwiperSlide >
-                    <object
-                      key={i}
-                      className="photoSingle"
-                      data={photo.src}
-                      type="image/jpeg"
-                    ></object>
-                  </SwiperSlide>
-                </>
-                );
-              })
-                
-          // })
-        }
+              return (<>
+                <SwiperSlide >
+                  <object
+                    key={i}
+                    className="photoSingle"
+                    data={photo.src}
+                    type="image/jpeg"
+                  ></object>
+                </SwiperSlide>
+              </>
+              );
+            })
+
+            // })
+          }
           {/* MAPEO FAVORITOS */}
           {activePage === "favourites" &&
             favouritePhotos.map((photo, i) => {
