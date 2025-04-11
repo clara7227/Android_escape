@@ -41,7 +41,6 @@ const AppContainer = ({ app, show }) => {
   const clstring = `${app.payload}-wrapper`;
   const [activePage, setactivePage] = useState("photos"); // "photos" es el estado inicial
   const [singleView, setsingleView] = useState(false); // estado para vista de una sola foto
-  // const [initialImage, setinitialImage] = useState(""); // estado para guardar la imagen que se muestra en la pantalla single, según la imagen que se clicke.
   const [startIndex, setstartIndex] = useState(0); // estado para guardar el índice de la foto que se clickó en la vista de álbum, para mostrarla la primera en las slides
 
   // array de álbumes
@@ -73,16 +72,6 @@ const AppContainer = ({ app, show }) => {
   let customAlbum = media.photos.filter(
     (photo) => photo.album === "customAlbum1"
   );
-
-  //por tiempo
-  let todaysPhotos = media.photos.filter((photo) => photo.date === "today");
-  let yesterdaysPhotos = media.photos.filter(
-    (photo) => photo.date === "yesterday"
-  );
-  let thisMonthPhotos = media.photos.filter(
-    (photo) => photo.date === "thisMonth"
-  );
-  let longAgoPhotos = media.photos.filter((photo) => photo.date === "longAgo");
 
   // 2.
   const renderContent = () => {
