@@ -12,21 +12,17 @@
             "src": "img/asset/photos/dos.jpg",
             "title": "",
             "date": "today",
+            "location": "Kreuzberg, Berlin, 10967",
             "favourite": "false",
             "album": "camera"
         },
-        {
-            "src": "img/asset/photos/uno.jpg",
-            "title": "",
-            "date": "today",
-            "favourite": "false",
-            "album": "camera"
-        },
-       
+
+    
         {
             "src": "img/asset/photos/tres.jpg",
             "title": "",
             "date": "today",
+            "location": "Kreuzberg, Berlin, 10967",
             "favourite": "false",
             "album": "camera"
         },
@@ -34,20 +30,24 @@
             "src": "img/asset/photos/cuatro.jpg",
             "title": "",
             "date": "yesterday",
+            "location": "Kreuzberg, Berlin, 10967",
             "favourite": "false",
             "album": "camera"
         },
+  
         {
             "src": "img/asset/photos/cinco.jpg",
             "title": "",
             "date": "yesterday",
+            "location": "Kreuzberg, Berlin, 10967",
             "favourite": "false",
-            "album": "camera"
+            "album": "customAlbum2"
         },
         {
             "src": "img/asset/photos/seis.jpg",
             "title": "",
             "date": "yesterday",
+            "location": "Kreuzberg, Berlin, 10967",
             "favourite": "false",
             "album": "camera"
         },
@@ -55,6 +55,7 @@
             "src": "img/asset/photos/siete.jpg",
             "title": "",
             "date": "yesterday",
+            "location": "Kreuzberg, Berlin, 10967",
             "favourite": "true",
             "album": "camera"
         },
@@ -62,162 +63,105 @@
             "src": "img/asset/photos/ocho.jpg",
             "title": "",
             "date": "thisMonth",
+            "location": "Kreuzberg, Berlin, 10967",
             "favourite": "false",
             "album": "screenshots"
         },
         {
-            "src": "img/asset/photos/ocho.jpg",
+            "src": "img/asset/photos/diecinueve.png",
             "title": "",
             "date": "thisMonth",
+            "location": "La Rambla, Barcelona, 08007",
             "favourite": "false",
             "album": "screenshots"
         },
         {
-            "src": "img/asset/photos/ocho.jpg",
+            "src": "img/asset/photos/veinte.png",
             "title": "",
             "date": "thisMonth",
-            "favourite": "false",
-            "album": "screenshots"
-        },
-        {
-            "src": "img/asset/photos/ocho.jpg",
-            "title": "",
-            "date": "thisMonth",
-            "favourite": "false",
-            "album": "screenshots"
-        },
-        {
-            "src": "img/asset/photos/ocho.jpg",
-            "title": "",
-            "date": "thisMonth",
-            "favourite": "false",
-            "album": "screenshots"
-        },
-        {
-            "src": "img/asset/photos/ocho.jpg",
-            "title": "",
-            "date": "thisMonth",
-            "favourite": "false",
-            "album": "screenshots"
-        },
-        {
-            "src": "img/asset/photos/ocho.jpg",
-            "title": "",
-            "date": "thisMonth",
-            "favourite": "false",
-            "album": "screenshots"
-        },
-        {
-            "src": "img/asset/photos/ocho.jpg",
-            "title": "",
-            "date": "thisMonth",
-            "favourite": "false",
-            "album": "screenshots"
-        },
-        {
-            "src": "img/asset/photos/ocho.jpg",
-            "title": "",
-            "date": "thisMonth",
-            "favourite": "false",
-            "album": "screenshots"
-        },
-        {
-            "src": "img/asset/photos/ocho.jpg",
-            "title": "",
-            "date": "thisMonth",
-            "favourite": "false",
-            "album": "screenshots"
-        },
-        {
-            "src": "img/asset/photos/ocho.jpg",
-            "title": "",
-            "date": "thisMonth",
-            "favourite": "false",
-            "album": "screenshots"
-        },
-        {
-            "src": "img/asset/photos/ocho.jpg",
-            "title": "",
-            "date": "thisMonth",
-            "favourite": "false",
-            "album": "screenshots"
-        },
-        {
-            "src": "img/asset/photos/ocho.jpg",
-            "title": "",
-            "date": "thisMonth",
-            "favourite": "false",
-            "album": "screenshots"
-        },
-        {
-            "src": "img/asset/photos/ocho.jpg",
-            "title": "",
-            "date": "thisMonth",
+            "location": "La Rambla, Barcelona, 08007",
             "favourite": "true",
             "album": "screenshots"
         },
         {
-            "src": "img/asset/photos/nueve.jpg",
+            "src": "img/asset/photos/diez.jpg",
             "title": "",
             "date": "longAgo",
-            "favourite": "true",
-            "album": "albumCustom"
-        },
-        {
-            "src": "img/asset/photos/nueve.jpg",
-            "title": "",
-            "date": "longAgo",
-            "favourite": "true",
-            "album": "albumCustom"
-        },
-        {
-            "src": "img/asset/photos/nueve.jpg",
-            "title": "",
-            "date": "longAgo",
+            "location": "Kreuzberg, Berlin, 10967",
             "favourite": "false",
             "album": "albumCustom"
         },
         {
-            "src": "img/asset/photos/nueve.jpg",
+            "src": "img/asset/photos/once.jpg",
             "title": "",
             "date": "longAgo",
+            "location": "Kreuzberg, Berlin, 10967",
             "favourite": "false",
             "album": "albumCustom"
         },
         {
-            "src": "img/asset/photos/nueve.jpg",
+            "src": "img/asset/photos/doce.png",
             "title": "",
             "date": "longAgo",
+            "location": "Kreuzberg, Berlin, 10967",
+            "favourite": "true",
+            "album": "albumCustom"
+        },
+        {
+            "src": "img/asset/photos/uno.jpg",
+            "title": "",
+            "date": "longAgo",
+            "location": "Aluche, Madrid, 28047 ",
             "favourite": "false",
-            "album": "customAlbum1"
+            "album": "random_album"
         },
         {
-            "src": "img/asset/photos/nueve.jpg",
+            "src": "img/asset/photos/trece.jpg",
             "title": "",
             "date": "longAgo",
-            "favourite": "true",
-            "album": "customAlbum1"
+            "location": "Aluche, Madrid, 28047 ",
+            "favourite": "false",
+            "album": "random_album"
         },
         {
-            "src": "img/asset/photos/nueve.jpg",
+            "src": "img/asset/photos/catorce.jpg",
             "title": "",
             "date": "longAgo",
-            "favourite": "true",
-            "album": "customAlbum1"
+            "location": "Aluche, Madrid, 28047 ",
+            "favourite": "false",
+            "album": "random_album"
         },
         {
-            "src": "img/asset/photos/nueve.jpg",
+            "src": "img/asset/photos/quince.jpg",
             "title": "",
             "date": "longAgo",
-            "favourite": "true",
-            "album": "customAlbum1"
+            "location": "Aluche, Madrid, 28047 ",
+            "favourite": "false",
+            "album": "random_album"
         },
         {
-            "src": "img/asset/photos/nueve.jpg",
+            "src": "img/asset/photos/dieciseis.jpg",
             "title": "",
             "date": "longAgo",
+            "location": "Aluche, Madrid, 28047 ",
+            "favourite": "false",
+            "album": "random_album"
+        },
+        {
+            "src": "img/asset/photos/diecisiete.jpg",
+            "title": "",
+            "date": "longAgo",
+            "location": "Aluche, Madrid, 28047 ",
             "favourite": "true",
-            "album": "customAlbum1"
+            "album": "random_album"
+        },
+        {
+            "src": "img/asset/photos/dieciocho.jpg",
+            "title": "",
+            "date": "longAgo",
+            "location": "Aluche, Madrid, 28047 ",
+            "favourite": "false",
+            "album": "random_album"
         }
     ]
 }

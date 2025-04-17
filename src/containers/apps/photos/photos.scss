@@ -82,6 +82,9 @@
         font-size: 1.4rem;
         text-align: start;
     }
+    .albumName {
+        word-break: break-all
+    }
     p {
         color: rgb(137, 137, 137);
         font-weight: 300
@@ -97,16 +100,32 @@
 //SINGLE PHOTO VIEW
 .singlePhotoView {
     background: black; 
-    height: 100vh; 
+    height: 100%; 
     position: fixed;
     top: 0px; 
-    width: 440px
+    left: 0px;
+    width: 440px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
 }
 .photoSingle {
     width: 440px;
     height: 440px;
     object-fit: cover;
 
+}
+.titlePhotoSingle {
+    color: white;
+    padding-left: 1rem;
+    text-transform: capitalize;
+    .date {
+        margin-top: 4px;
+        font-size: 22px
+    }
+    .location {
+        font-weight: 400
+    }
 }
 .display-none {
     display: none
@@ -116,5 +135,65 @@
 }
 .backIconSingle {
     cursor: pointer;
-    color: white
+    color: white;
+    padding: 1rem 0 1rem 1rem
+}
+.btnGroupSinglePhoto {
+    position: absolute;
+    bottom: 0;
+    background: black;
+    display: flex;
+    width: 100%;
+    padding: 2rem;
+    justify-content: space-between;
+    transition: all 300ms ease-in-out;
+}
+.btnGroupSinglePhotoHidden {
+    position: absolute;
+    bottom: 0;
+    background: black;
+    display: flex;
+    width: 100%;
+    padding: 2rem;
+    justify-content: space-between;
+    transform: translate(0px, 80px);
+    transition: all 300ms ease-in-out;
+}
+.btn-icon-single-photo {
+    color: lightgrey;
+}
+
+// PHOTOMENU
+.photoMenu {
+    position: absolute;
+    z-index: 999;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all 300ms ease-in-out;
+    h6 {
+        color:white;
+    }
+}
+.photoMenuHidden {
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    transform: translate(0px,-60px);
+    left: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all 300ms ease-in-out;
+    h6 {
+        color:white;
+    }
+}
+.swiper-slide {
+    display: flex;
+    align-items: center;
 }
