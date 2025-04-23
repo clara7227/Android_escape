@@ -1,6 +1,18 @@
 .App {
   --stbar-h: 2.4em;
 }
+.app-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
 
 *[data-ninja="true"] {
   pointer-events: none;
