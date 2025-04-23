@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import './UnlockScreen.css';
 
-
 const UnlockScreen = function ({ pinLength = 4, onUnlock, hasError = false }) {
   const [pin, setPin] = useState(Array(pinLength).fill(''));
   const [currentIndex, setCurrentIndex] = useState(0);
