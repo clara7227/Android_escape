@@ -41,7 +41,7 @@ function App() {
 
   return (
     <div className="App">
-      {!isUnlocked && <StatusBar hidetime={false} />}
+      {!isUnlocked && <StatusBar hidetime={true}/>}
       <div className="appwrap">
         {isUnlocked ? (
           <Home />
@@ -50,14 +50,14 @@ function App() {
             <h1>Desbloquea el teléfono</h1>
             {error && <p style={{ color: 'red' }}>Código incorrecto ❌</p>}
             <UnlockScreen
-  onUnlock={handleUnlock}
-  hasError={error}
-  onBack={() => {
-    setShowUnlock(false);
-    setShowLock(true);
-    setError(false);
-  }}
-/>
+              onUnlock={handleUnlock}
+              hasError={error}
+              onBack={() => {
+                setShowUnlock(false);
+                setShowLock(true);
+                setError(false);
+              }}
+            />
           </div>
         ) : showLock ? (
           <div className="fade-in">

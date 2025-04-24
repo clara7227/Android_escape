@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import './LockScreen.css';
 import { Icon } from 'components/utils';
+import { MinimalVertClock } from 'components/widgets/index';
+
 
 const LockScreen = ({ onActivateUnlock }) => {
   const [time, setTime] = useState(new Date());
@@ -16,19 +18,22 @@ const LockScreen = ({ onActivateUnlock }) => {
 
   return (
     <div className="lockscreen" onClick={onActivateUnlock}>
-      <div className="lockscreen-time">
-        {hours}
-        <span className="separator">:</span>
-        {minutes}
-      </div>
-      <Icon
-        className="lockscreen-icon"
-        mui="Lock"
-        out
-        w={32}
-        color="#fff"
-      />
-    </div>
+  <MinimalVertClock />
+  <Icon
+    className="lockscreen-icon"
+    mui="Lock"
+    out
+    w={32}
+    color="#fff"
+    />
+    <p>Haz click para desbloquear</p>
+  <div className="bt-nav-container">
+    <Icon className="press-in" mui="FlashlightOn" w={20} color="#fff" action="" />
+    <Icon className="press-in" mui="CameraAlt" w={20} color="#fff" action="" />
+  </div>
+</div>
+
+    
   );
 };
 
