@@ -1,6 +1,15 @@
 .App {
   --stbar-h: 2.4em;
 }
+
+.white-contrast-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.2); /* Blanco translúcido */
+  z-index: 1;
+  pointer-events: none;
+}
+
 .app-container {
   position: absolute;
   top: 50%;

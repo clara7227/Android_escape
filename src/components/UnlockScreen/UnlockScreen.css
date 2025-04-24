@@ -1,7 +1,16 @@
+.status-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
 .unlock-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 20px;
+
   }
   
   .unlock-screen {
@@ -18,7 +27,7 @@
     text-align: center;
     border: 2px solid #ccc;
     border-radius: 8px;
-    background-color: #fff;
+    background-color: #ffffff82;
     pointer-events: none;
   }
   
