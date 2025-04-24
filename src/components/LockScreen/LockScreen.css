@@ -15,6 +15,7 @@
   
       font-size: small;
       padding: 1em;
+      opacity: 0.7;
   }
   
   
@@ -33,7 +34,7 @@
     margin: 0 10px;
   }
 
-  .bt-nav-container{
+  .bt-nav-lock{
     display: flex;
     justify-content: space-between;
     padding: 1em 2em;
@@ -42,26 +43,24 @@
     position: absolute;
     bottom: 0;
   }
-  .vert-time-container {
+  .lockscreen-clock {
     display: flex;
     flex-direction: column;
     align-items: center;
     color: white;
     text-shadow: 0 0 5px black;
   }
-  .vert-time-container> div {
-    display: flex;
-    align-items: center;
-    width: auto;
-  }
   
-  .vert-time-container .text-6xl {
+  .lockscreen-clock-time div {
     font-size: 90px;
     font-weight: bold;
+    line-height: 1;
   }
   
-  .vert-time-container .text-sm {
+  .lockscreen-clock-date {
     font-size: 16px;
     margin-top: 10px;
+    text-transform: capitalize;
   }
+  
   

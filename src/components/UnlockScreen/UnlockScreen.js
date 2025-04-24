@@ -64,7 +64,7 @@ const UnlockScreen = function ({ pinLength = 4, onUnlock, hasError = false, onBa
   className="backspace button"
   mui="Backspace"
   out
-  w={28}
+  w={26}
   color="#fff"
   onClick={() => handleKeypadClick('←')}
 />

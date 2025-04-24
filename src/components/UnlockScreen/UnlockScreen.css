@@ -27,7 +27,7 @@
     text-align: center;
     border: 2px solid #ccc;
     border-radius: 8px;
-    background-color: #ffffff82;
+    background-color: #ffffff9c;
     pointer-events: none;
   }
   
@@ -81,9 +81,9 @@
     width: 60px;
     height: 60px;
     grid-column: span 3;
-    background-color: #24242431;
+    background-color: #5c5c5c5c;
     border-radius: 35px;
-    border: solid 2px #2563eb;
+    border: solid 2px #ffffff87;
 
     cursor: pointer;
     display: flex;

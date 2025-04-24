@@ -2,7 +2,23 @@
 import React, { useEffect, useState } from 'react';
 import './LockScreen.css';
 import { Icon } from 'components/utils';
-import { MinimalVertClock } from 'components/widgets/index';
+import { useSelector } from 'react-redux';
+import { ClockDate } from 'components/widgets/index';
+
+const LockScreenClock = () => {
+  const time = useSelector((state) => state.global.time);
+  const fillZero = (x) => (x < 10 ? '0' : '') + x;
+
+  return (
+    <div className="lockscreen-clock">
+      <div className="lockscreen-clock-time">
+        <div>{fillZero(parseInt(time.hours))}</div>
+        <div>{fillZero(parseInt(time.minutes))}</div>
+      </div>
+      <ClockDate className="text-sm mt-2"/>
+    </div>
+  );
+};
 
 
 const LockScreen = ({ onActivateUnlock }) => {
@@ -13,12 +29,9 @@ const LockScreen = ({ onActivateUnlock }) => {
     return () => clearInterval(timer);
   }, []);
 
-  const hours = time.getHours().toString().padStart(2, '0');
-  const minutes = time.getMinutes().toString().padStart(2, '0');
-
   return (
     <div className="lockscreen" onClick={onActivateUnlock}>
-  <MinimalVertClock />
+  <LockScreenClock/>
   <Icon
     className="lockscreen-icon"
     mui="Lock"
@@ -27,7 +40,7 @@ const LockScreen = ({ onActivateUnlock }) => {
     color="#fff"
     />
     <p>Haz click para desbloquear</p>
-  <div className="bt-nav-container">
+  <div className="bt-nav-lock">
     <Icon className="press-in" mui="FlashlightOn" w={20} color="#fff" action="" />
     <Icon className="press-in" mui="CameraAlt" w={20} color="#fff" action="" />
   </div>
