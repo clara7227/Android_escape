@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import './UnlockScreen.css';
-import { Icon } from 'components/utils'; // Asegúrate de que esta ruta sea correcta
+import { Icon } from 'components/utils'; 
 
 
 const UnlockScreen = function ({ pinLength = 4, onUnlock, hasError = false, onBack }) {
