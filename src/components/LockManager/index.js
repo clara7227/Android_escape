@@ -1,4 +1,4 @@
-// components/LockManager/index.js
+// LockManager/index.js
 import React, { useState } from 'react';
 import LockScreen from 'components/LockScreen';
 import UnlockScreen from 'components/UnlockScreen/UnlockScreen';
