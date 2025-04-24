@@ -47,8 +47,8 @@ function App() {
           <Home />
         ) : showUnlock ? (
           <div className="app-container fade-in">
-            <h1>Desbloquea el teléfono</h1>
-            {error && <p style={{ color: 'red' }}>Código incorrecto ❌</p>}
+            <h1>Enter PIN code to unlock</h1>
+            {error && <p style={{ color: 'red' }}>Incorrect PIN code ❌</p>}
             <UnlockScreen
               onUnlock={handleUnlock}
               hasError={error}

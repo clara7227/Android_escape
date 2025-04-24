@@ -39,7 +39,7 @@ const LockScreen = ({ onActivateUnlock }) => {
     w={32}
     color="#fff"
     />
-    <p>Haz click para desbloquear</p>
+    <p>Click to unlock</p>
   <div className="bt-nav-lock">
     <Icon className="press-in" mui="FlashlightOn" w={20} color="#fff" action="" />
     <Icon className="press-in" mui="CameraAlt" w={20} color="#fff" action="" />
