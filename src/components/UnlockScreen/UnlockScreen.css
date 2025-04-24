@@ -61,17 +61,6 @@
     transition: background-color 0.2s;
   }
   
-  .backspace {
-    width: 60px;
-    height: 60px;
-    font-size: 1.5rem;
-    background-color: #ef4444;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
   
   .keypad button {
     height: 60px;
@@ -89,11 +78,37 @@
   }
   
   .keypad .backspace {
+    width: 60px;
+    height: 60px;
     grid-column: span 3;
     background-color: #24242431;
+    border-radius: 35px;
+    border: solid 2px #2563eb;
+
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .keypad .backspace:hover {
+    background-color: #1b4cb6;
   }
   .pin-input.error {
     border: 2px solid #ef4444 !important;
     background-color: #ffe4e4;
   }
-    
+  .back-button {
+    bottom: -3rem;
+    left: -8rem;
+    z-index: 3;
+    cursor: pointer;
+  }
+  .uicon {
+    position: relative;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    justify-content: start;
+    align-items: end;
+}  
+  

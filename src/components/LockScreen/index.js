@@ -1,6 +1,7 @@
 // LockScreen.js
 import React, { useEffect, useState } from 'react';
 import './LockScreen.css';
+import { Icon } from 'components/utils';
 
 const LockScreen = ({ onActivateUnlock }) => {
   const [time, setTime] = useState(new Date());
@@ -20,7 +21,13 @@ const LockScreen = ({ onActivateUnlock }) => {
         <span className="separator">:</span>
         {minutes}
       </div>
-      <div className="lockscreen-icon">🔓</div>
+      <Icon
+        className="lockscreen-icon"
+        mui="Lock"
+        out
+        w={32}
+        color="#fff"
+      />
     </div>
   );
 };

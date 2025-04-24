@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 import './UnlockScreen.css';
+import { Icon } from 'components/utils'; // Asegúrate de que esta ruta sea correcta
 
-const UnlockScreen = function ({ pinLength = 4, onUnlock, hasError = false }) {
+
+const UnlockScreen = function ({ pinLength = 4, onUnlock, hasError = false, onBack }) {
   const [pin, setPin] = useState(Array(pinLength).fill(''));
   const [currentIndex, setCurrentIndex] = useState(0);
   const inputRefs = useRef([]);
@@ -34,51 +36,50 @@ const UnlockScreen = function ({ pinLength = 4, onUnlock, hasError = false }) {
     }
   };
 
-  const inputs = pin.map((digit, index) =>
-    React.createElement('input', {
-      key: index,
-      type: 'text',
-      inputMode: 'numeric',
-      maxLength: 1,
-      value: digit,
-      readOnly: true,
-      ref: (el) => (inputRefs.current[index] = el),
-      className: `pin-input ${hasError ? 'error' : ''}`
-    })
-  );
+  return (
+    <div className="unlock-wrapper">
+      <div className="unlock-screen">
+        {pin.map((digit, index) => (
+          <input
+            key={index}
+            type="text"
+            inputMode="numeric"
+            maxLength="1"
+            value={digit}
+            readOnly
+            ref={(el) => (inputRefs.current[index] = el)}
+            className={`pin-input ${hasError ? 'error' : ''}`}
+          />
+        ))}
+      </div>
+      <div className="keypad">
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+          <button key={n} onClick={() => handleKeypadClick(String(n))}>
+            {n}
+          </button>
+        ))}
+        <div className="keypad-bottom-row">
+          <button className="keypad-zero" onClick={() => handleKeypadClick('0')}>0</button>
+          <Icon
+  className="backspace button"
+  mui="Backspace"
+  out
+  w={28}
+  color="#fff"
+  onClick={() => handleKeypadClick('←')}
+/>
 
-  const keypad = [
-    ...[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) =>
-      React.createElement(
-        'button',
-        {
-          key: n,
-          onClick: () => handleKeypadClick(String(n))
-        },
-        n
-      )
-    ),
-    React.createElement(
-      'div',
-      { key: 'row', className: 'keypad-bottom-row' },
-      React.createElement(
-        'button',
-        { className: 'keypad-zero', onClick: () => handleKeypadClick('0') },
-        '0'
-      ),
-      React.createElement(
-        'button',
-        { className: 'backspace', onClick: () => handleKeypadClick('←') },
-        '←'
-      )
-    )
-  ];
-
-  return React.createElement(
-    'div',
-    { className: 'unlock-wrapper' },
-    React.createElement('div', { className: 'unlock-screen' }, ...inputs),
-    React.createElement('div', { className: 'keypad' }, ...keypad)
+        </div>
+      </div>
+      <Icon
+        className="back-button"
+        mui="ArrowBack"
+        out
+        w={32}
+        color="#fff"
+        onClick={onBack}
+      />
+    </div>
   );
 };
 

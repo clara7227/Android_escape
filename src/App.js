@@ -49,7 +49,15 @@ function App() {
           <div className="app-container fade-in">
             <h1>Desbloquea el teléfono</h1>
             {error && <p style={{ color: 'red' }}>Código incorrecto ❌</p>}
-            <UnlockScreen onUnlock={handleUnlock} hasError={error} />
+            <UnlockScreen
+  onUnlock={handleUnlock}
+  hasError={error}
+  onBack={() => {
+    setShowUnlock(false);
+    setShowLock(true);
+    setError(false);
+  }}
+/>
           </div>
         ) : showLock ? (
           <div className="fade-in">
