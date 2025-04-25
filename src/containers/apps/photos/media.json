@@ -162,6 +162,30 @@
             "location": "Aluche, Madrid, 28047 ",
             "favourite": "false",
             "album": "random_album"
+        },
+        {
+            "src": "img/asset/photos/veinticuatro.jpg",
+            "title": "",
+            "date": "yesterday",
+            "location": "Aluche, Madrid, 28047 ",
+            "favourite": "false",
+            "album": "random_album"
+        },
+        {
+            "src": "img/asset/photos/veintidos.png",
+            "title": "",
+            "date": "yesterday",
+            "location": "Aluche, Madrid, 28047 ",
+            "favourite": "false",
+            "album": "random_album"
+        },
+        {
+            "src": "img/asset/photos/veintiuno.png",
+            "title": "",
+            "date": "thisMonth",
+            "location": "Aluche, Madrid, 28047 ",
+            "favourite": "true",
+            "album": "random_album"
         }
     ]
 }

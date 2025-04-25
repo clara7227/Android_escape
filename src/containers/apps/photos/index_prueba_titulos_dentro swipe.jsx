@@ -244,7 +244,7 @@ const AppContainer = ({ app, show }) => {
                       onClick={() => (setsingleView(true), setstartIndex(i), setphotoIndex(i))}
                       key={`photo-${i}`}
                     ></object>
-                    }
+                  }
                 </React.Fragment>
               );
             })}
@@ -332,7 +332,7 @@ const AppContainer = ({ app, show }) => {
 
             )
             }
-          
+
 
           </div>
         </div>
@@ -354,22 +354,22 @@ const AppContainer = ({ app, show }) => {
             TODAS las fotos, para coger bien el index, aunque sólo se muestren las 
              filtradas por álbum */}
             {media.photos.map((photo, i) => {
-                let localIndex;
-                if (photo.album === activePage) {
-                  localIndex = startIndexVar;
-                  startIndexVar++;
-                  console.log(i, "startIndexVar", startIndexVar);
-                }
-               
-                return (
-                  <React.Fragment key={"Album" + photo.album + "-" + i}>
-                    {/* Sólo se renderiza el componente SinglePhoto si el index de la foto es igual al que se ha guardado al hacer click en la foto */}
-                    {/* {photo.album === activePage ? startIndexVar++ : " "} */}
-                    {/* {console.log(startIndexVar, " startIndexVar aqui")} */}
-                    {i === startIndex && <SinglePhoto />}
-                    {console.log(i, startIndex,i === startIndex, " el startindex en albumm")}
-                 
-                    {photo.album === activePage && 
+              let localIndex;
+              if (photo.album === activePage) {
+                localIndex = startIndexVar;
+                startIndexVar++;
+                console.log(i, "startIndexVar", startIndexVar);
+              }
+
+              return (
+                <React.Fragment key={"Album" + photo.album + "-" + i}>
+                  {/* Sólo se renderiza el componente SinglePhoto si el index de la foto es igual al que se ha guardado al hacer click en la foto */}
+                  {/* {photo.album === activePage ? startIndexVar++ : " "} */}
+                  {/* {console.log(startIndexVar, " startIndexVar aqui")} */}
+                  {i === startIndex && <SinglePhoto />}
+                  {console.log(i, startIndex, i === startIndex, " el startindex en albumm")}
+
+                  {photo.album === activePage &&
                     <object
                       className="photo"
                       data={photo.src}
@@ -378,16 +378,16 @@ const AppContainer = ({ app, show }) => {
                         setsingleView(true);
                         setstartIndex(localIndex);
                         setphotoIndex(i);
-                   
+
                       }}
                       key={`Album-${i}`}
-                      // index={photo.album === activePage ? startIndexVar++ : " "}
+                    // index={photo.album === activePage ? startIndexVar++ : " "}
                     >
                     </object>
-                    }
-                  </React.Fragment>
-                );
-              })}
+                  }
+                </React.Fragment>
+              );
+            })}
             {activePage === "favourites" &&
               media.photos.map((photo, i) => {
                 let localIndex;
@@ -399,18 +399,19 @@ const AppContainer = ({ app, show }) => {
                 return (
                   <React.Fragment key={"FavouritesAlbum-" + i}>
                     {i === startIndex && <SinglePhoto />}
-                    { photo.favourite === "true" &&
-                    <object
-                      className="photo"
-                      data={photo.src}
-                      type="image/jpeg"
-                      onClick={() => 
-                        {setsingleView(true); 
-                        setstartIndex(localIndex);
-                        setphotoIndex(i)}}
-                      key={`photo-${i}`}
-                    ></object>
-                }
+                    {photo.favourite === "true" &&
+                      <object
+                        className="photo"
+                        data={photo.src}
+                        type="image/jpeg"
+                        onClick={() => {
+                          setsingleView(true);
+                          setstartIndex(localIndex);
+                          setphotoIndex(i)
+                        }}
+                        key={`photo-${i}`}
+                      ></object>
+                    }
                   </React.Fragment>
                 );
               })}
@@ -480,19 +481,19 @@ const AppContainer = ({ app, show }) => {
       return dateString
     }
     // console.log(formatDate(veryLongLongTimeAgo), " aqui date string")
-    console.log(startIndex , " startIndex aquiss")
-    console.log(photoIndex , " photoindex aquiss")
+    console.log(startIndex, " startIndex aquiss")
+    console.log(photoIndex, " photoindex aquiss")
     return (
       <div
         className={singleView === true ? "singlePhotoView" : "display-none"}
-        onClick={() => 
-          {setphotoMenu(!photoMenu);
+        onClick={() => {
+          setphotoMenu(!photoMenu);
           // setstartIndex(photoIndex) // no funciona para mostrar la foto actual...
-          } 
+        }
         }
       >
-    
-        <div className={photoMenu === true ? "photoMenu" : "photoMenuHidden"}>
+
+        {/* <div className="" >
           <div className="backIconSingle">
             <ArrowBackIcon sx={{ fontSize: 30 }}
               onClick={() => setsingleView(false)}
@@ -507,27 +508,26 @@ const AppContainer = ({ app, show }) => {
             una comprobación del album activo, y se filtra según el álbum/
             o si es favorito o no. */}
 
-            {/* {console.log(favouritePhotos[photoIndex].date, " favouritePhotos")} */}
-            <p className="date"> 
-              {/* {console.log(screenShots[photoIndex].date)} */}
-            {/* { activePage === "favourites"  && 
+        {/* {console.log(favouritePhotos[photoIndex].date, " favouritePhotos")} */}
+        {/* <p className="date">  */}
+        {/* {console.log(screenShots[photoIndex].date)} */}
+        {/* { activePage === "favourites"  && 
               
             } */}
-              {formatDate(media.photos[photoIndex].date)}
+        {/* {formatDate(media.photos[photoIndex].date)}
             </p>
-            <p className="location">  
-            {/* { activePage === "favourites"  && 
+            <p className="location">   */}
+        {/* { activePage === "favourites"  && 
               formatDate(media.photos[photoIndex].location)
             }
-
             {
               activePage === "customAlbum2" &&
               formatDate(media.photos[photoIndex].date)
             } */}
-            {formatDate(media.photos[photoIndex].location)}
+        {/* {formatDate(media.photos[photoIndex].location)}
             </p>
           </div>
-        </div>
+        </div> */}
         <Swiper
           // initialSlide={startIndex}
           initialSlide={singleView === true ? startIndex : photoIndex}
@@ -535,8 +535,9 @@ const AppContainer = ({ app, show }) => {
           slidesPerView={1}
           // esta no sirve porque ya no se guarda la foto en la que estás, y si clickas, aparece la ultima foto que se ha guardado, en vez de la que tiene que aparecer
           // onSlideChange={(swiper) => { console.log(swiper.activeIndex, " swiper realIndex aquis"); photoMenu === true ? setphotoIndex(swiper.activeIndex) : console.log(swiper.activeIndex)}}
-          onSlideChange={(swiper) => { console.log(swiper.activeIndex, " swiper realIndex aquis"); 
-            // setphotoIndex(swiper.activeIndex ) // no funciona porque se queda
+          onSlideChange={(swiper) => {
+            console.log(swiper.activeIndex, " swiper realIndex aquis");
+            // setphotoIndex(swiper.activeIndex ) // no funciona porque se queda la última foto que se ha guardado, y no la que tiene que aparecer
           }}
           onSwiper={(swiper) => console.log(swiper)}
         >
@@ -550,17 +551,32 @@ const AppContainer = ({ app, show }) => {
               return (
                 <React.Fragment key={"singleAll-" + i}>
                   <SwiperSlide >
+                    <div className={photoMenu === true ? "photoMenu" : "photoMenuHidden"}>
+                      <div className="backIconSingle">
+                        <ArrowBackIcon sx={{ fontSize: 30 }}
+                          onClick={() => setsingleView(false)}
+                        />
+                      </div>
+                      <div className="titlePhotoSingle">
+                        <p>
+                          {formatDate(photo.location)}
+                        </p>
+                        <p>
+                          {formatDate(photo.date)}
+                        </p>
+                      </div>
+                    </div>
                     {console.log(photoIndex, " photoIndex", i)}
                     <object
                       key={`photo-${i}`}
                       className="photoSingle"
                       data={photo.src}
                       type="image/jpeg"
-                      // onClick={() => setphotoIndex(i)}
+                    // onClick={() => setphotoIndex(i)}
                     // onClick={()=> { if (photoIndex !== i) {setphotoIndex(i)}}} // esto no sirve porque parpadea. guardar el índice de la foto que se ha cargado para poder mostrar su fecha y otros metadatos
                     >
 
-              
+
                     </object>
                   </SwiperSlide>
                 </React.Fragment>
@@ -580,7 +596,7 @@ const AppContainer = ({ app, show }) => {
                       data={photo.src}
                       type="image/jpeg"
                     ></object>
-                
+
                   </SwiperSlide>
                 </React.Fragment>
               );
@@ -600,12 +616,12 @@ const AppContainer = ({ app, show }) => {
                       data={photo.src}
                       type="image/jpeg"
                     ></object>
-                     {/* <div className="photoMenu">
+                    {/* <div className="photoMenu">
                         <p className="date">{formatDate(photo.date)}</p>
                         <p className="location">{photo.location}</p>
                       </div> */}
                   </SwiperSlide>
-                 
+
                 </React.Fragment>
               );
             })}
