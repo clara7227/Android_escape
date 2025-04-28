@@ -68,7 +68,7 @@ body {
 }
 
 .status-bar {
-  // position: absolute;
+  position: relative;
   height: var(--stbar-h);
   width: 100%;
   display: flex;
