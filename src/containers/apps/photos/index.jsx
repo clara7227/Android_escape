@@ -70,9 +70,8 @@ const AppContainer = ({ app, show }) => {
     }
   })
 
-
   //*******MINIATURA DE ÁLBUMES, CREACIÓN DINÁMICA A PARTIR
-  // DE ÁLBUMES CREADOS ********//
+  // DE ÁLBUMES DE FOTOS ********//
 
   let customAlbumsProps = []
 
@@ -119,16 +118,16 @@ const AppContainer = ({ app, show }) => {
     (photo) => photo.album === "customAlbum1"
   );
 
-  // console.log(screenShots + " screenshots album")
-  //por tiempo
-  let todaysPhotos = media.photos.filter((photo) => photo.date === "today");
-  let yesterdaysPhotos = media.photos.filter(
-    (photo) => photo.date === "yesterday"
-  );
-  let thisMonthPhotos = media.photos.filter(
-    (photo) => photo.date === "thisMonth"
-  );
-  let longAgoPhotos = media.photos.filter((photo) => photo.date === "longAgo");
+  // // console.log(screenShots + " screenshots album")
+  // //por tiempo
+  // let todaysPhotos = media.photos.filter((photo) => photo.date === "today");
+  // let yesterdaysPhotos = media.photos.filter(
+  //   (photo) => photo.date === "yesterday"
+  // );
+  // let thisMonthPhotos = media.photos.filter(
+  //   (photo) => photo.date === "thisMonth"
+  // );
+  // let longAgoPhotos = media.photos.filter((photo) => photo.date === "longAgo");
 
   // 2.
   const renderContent = () => {
@@ -529,15 +528,17 @@ const AppContainer = ({ app, show }) => {
           </div>
         </div>
         <Swiper
+          // no deja pasar al siguiente slide en combinación con setphotoIndex(swiper.activeIndex)
           // initialSlide={startIndex}
-          initialSlide={singleView === true ? startIndex : photoIndex}
+          // no coge bien el index de customAlbum 
+          initialSlide={photoIndex}
+          // IDEA para solucionar problema: GUARDAR INDICE EN PHOTOINDEX AL CLICKAR, QUE TAMBIÉN SEA LOCALINDEX
           spaceBetween={50}
           slidesPerView={1}
-          // esta no sirve porque ya no se guarda la foto en la que estás, y si clickas, aparece la ultima foto que se ha guardado, en vez de la que tiene que aparecer
-          // onSlideChange={(swiper) => { console.log(swiper.activeIndex, " swiper realIndex aquis"); photoMenu === true ? setphotoIndex(swiper.activeIndex) : console.log(swiper.activeIndex)}}
-          onSlideChange={(swiper) => { console.log(swiper.activeIndex, " swiper realIndex aquis"); 
-            // setphotoIndex(swiper.activeIndex ) // no funciona porque se queda
-          }}
+          // con setPhotoIndex(swiper.realIndex)
+          onSlideChange={(swiper) => { console.log(swiper.activeIndex, " swiper realIndex aquis", setphotoIndex(swiper.activeIndex));   }}
+          // sin setPhotoIndex(swiper.realIndex)
+          // onSlideChange={(swiper) => { console.log(swiper.activeIndex, " swiper realIndex aquis" )}}
           onSwiper={(swiper) => console.log(swiper)}
         >
 

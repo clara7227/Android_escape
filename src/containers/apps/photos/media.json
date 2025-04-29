@@ -41,7 +41,7 @@
             "date": "yesterday",
             "location": "Kreuzberg, Berlin, 10967",
             "favourite": "false",
-            "album": "customAlbum2"
+            "album": "camera"
         },
         {
             "src": "img/asset/photos/seis.jpg",
@@ -49,7 +49,7 @@
             "date": "yesterday",
             "location": "Kreuzberg, Berlin, 10967",
             "favourite": "false",
-            "album": "camera"
+            "album": "NUEVO ALBUM"
         },
         {
             "src": "img/asset/photos/siete.jpg",
