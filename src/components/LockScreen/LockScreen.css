@@ -49,6 +49,12 @@
     color: white;
     text-shadow: 0 0 5px black;
   }
+  .lockscreen-clock-time {
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+}
   
   .lockscreen-clock-time div {
     font-size: 90px;

@@ -23,7 +23,6 @@ function App() {
   return (
     <div className="App">
       <div className="appwrap">
-      {/* {!isUnlocked && <StatusBar hidetime={true} />} */}
         {isUnlocked ? <Home /> : <LockManager onUnlock={() => setIsUnlocked(true)} />}
         {!isUnlocked ? <UnlockBackground /> : <Background />}
         <OverLay />

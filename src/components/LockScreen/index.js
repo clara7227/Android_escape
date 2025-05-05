@@ -52,7 +52,6 @@ const LockScreen = ({ onActivateUnlock }) => {
   </div>
 </div>
 
-    
   );
 };
 
