@@ -9,18 +9,18 @@ import { Button } from "@mui/material";
 
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined';
-import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import IosShareOutlinedIcon from "@mui/icons-material/IosShareOutlined";
+import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import 'swiper/css';
+import "swiper/css";
 
 import media from "./media.json";
 import "./photos.scss";
@@ -50,51 +50,77 @@ const AppContainer = ({ app, show }) => {
   const [photoMenu, setphotoMenu] = useState(true); // estado para el menú de la foto, que se activa al clickar en una foto
   const [photoIndex, setphotoIndex] = useState(0); // estado para guardar el índice de la foto que se ha cargado en la vista de álbum, para mostrar su fecha y otros metadatos
 
+  // ordenar fotos por fecha: 
+  // por atributo dateIndex
+  let orderedPhotos = media.photos.sort((a, b) => {
+    if (a.dateIndex < b.dateIndex) {
+      return -1;
+    }
+    if (a.dateIndex > b.dateIndex) {
+      return 1;
+    }
+    return 0;
+  });
+  console.log(orderedPhotos, " ordered photos");
+
+
   // *******ALL ALBUMS ********
   // All albums array
-  const albums = []
+  const albums = [];
   // push al array "albums" los álbums de las fotos de media.json
   media.photos.forEach((photo) => {
     if (!albums.includes(photo.album)) {
       albums.push(photo.album);
     }
-  })
+  });
 
   // ******CUSTOM ALBUMS ONLY*******
   // Custom albums array
-  let customAlbums = []
+  let customAlbums = [];
   // push al array "customAlbums" los álbums que son custom
   albums.map((album, i) => {
     if (!["camera", "screenshots", "all"].includes(album)) {
       customAlbums.push(album);
     }
-  })
+  });
+
+  
 
   //*******MINIATURA DE ÁLBUMES, CREACIÓN DINÁMICA A PARTIR
   // DE ÁLBUMES DE FOTOS ********//
 
-  let customAlbumsProps = []
+  let customAlbumsProps = [];
 
   customAlbums.forEach((customAlbum, i) => {
-    let album = []
-    media.photos.forEach((photo) => photo.album === customAlbum ?
-      album.push(photo) : "")
+    let album = [];
+    media.photos.forEach((photo) =>
+      photo.album === customAlbum ? album.push(photo) : ""
+    );
 
-    // añadir al objeto de album custom propiedades. 
+    // añadir al objeto de album custom propiedades.
     customAlbumsProps[i] = {
       name: customAlbum,
       length: album.length,
-      src: album[0].src
-    }
+      src: album[0].src,
+    };
+  });
 
-  })
-  console.log(customAlbums)
-  console.log(customAlbumsProps, " aqui")
-  console.log(customAlbumsProps[0].name + " now here")
-  customAlbumsProps.map((customAlbum) => { return console.log(customAlbum + " olaaa") })
-  // añadir al array customAlbums algunas propiedades principales
+  // arrays de fotos de albumes predefinidos (camera, favourites y screenshots)
+  let cameraPhotos = orderedPhotos.filter(
+    (photo) => photo.album === "camera");
+  let favouritePhotos = orderedPhotos.filter(
+    (photo) => photo.favourite === "true");
+  let screenShots = orderedPhotos.filter(
+    (photo) => photo.album === "screenshots");
 
-  console.log(customAlbums + " custom albumes aqui")
+  // consolas
+  // console.log(customAlbums);
+  // console.log(customAlbumsProps, " aqui");
+  // console.log(customAlbumsProps[0].name + " now here");
+  // customAlbumsProps.map((customAlbum) => {
+  //   return console.log(customAlbum + " olaaa");
+  // });
+  // console.log(customAlbums + " custom albumes aqui");
   // console.log(albums + " albumes aqui")
 
   const TextButton = styled(Button)(({ theme }) => ({
@@ -103,20 +129,29 @@ const AppContainer = ({ app, show }) => {
       backgroundColor: red,
     },
   }));
-  //1. fotos filtradas
-  //por album
-  let cameraPhotos = media.photos.filter(
-    (photo) => photo.album === "camera"
-  );
-  let favouritePhotos = media.photos.filter(
-    (photo) => photo.favourite === "true"
-  );
-  let screenShots = media.photos.filter(
-    (photo) => photo.album === "screenshots"
-  );
-  let customAlbum = media.photos.filter(
-    (photo) => photo.album === "customAlbum1"
-  );
+
+  // ORDEN POR FECHA:
+  // Añadir a todas las fotos del array de fotos general
+  // la propiedad dateIndex para ordenar las fechas
+  media.photos.forEach((photo) => {
+    Object.defineProperty(photo, "dateIndex", {
+      value: 0,
+      writable: true,
+    });
+    if (photo.date === "today") {
+      photo.dateIndex = 0;      
+    } else if (photo.date === "yesterday") {
+      photo.dateIndex = 1;
+    } else if (photo.date === "thisMonth") {
+      photo.dateIndex = 2;
+    } else if (photo.date === "longAgo") {
+      photo.dateIndex = 3;        
+    }
+  }
+)
+
+    
+  // console.log(media.photos[5], "funcionara el dateindex?") // si funciona ole
 
   // // console.log(screenShots + " screenshots album")
   // //por tiempo
@@ -132,7 +167,7 @@ const AppContainer = ({ app, show }) => {
   // 2.
   const renderContent = () => {
     {
-      console.log(activePage);
+      console.log(activePage, " activePage");
       // switch (activePage) {
       //   case "albums":
       //     return <Albums />;
@@ -148,17 +183,12 @@ const AppContainer = ({ app, show }) => {
       //     return <Photos />;
       // }
       if (activePage === "albums") {
-
         return <Albums />;
-      } else if
-        (activePage === "all" || activePage === "photos") {
+      } else if (activePage === "all" || activePage === "photos") {
         return <Photos />;
       } else {
-        return <Album activePage={activePage}
-        />;
+        return <Album activePage={activePage} />;
       }
-
-
     }
   };
 
@@ -174,14 +204,17 @@ const AppContainer = ({ app, show }) => {
               return (
                 <React.Fragment key={photo.date + "today"}>
                   {i === startIndex && <SinglePhoto />}
-                  {photo.date === "today" &&
+                  {photo.date === "today" && (
                     <object
                       className="photo"
                       data={photo.src}
                       type="image/jpeg"
-                      onClick={() => (setsingleView(true), setstartIndex(i), setphotoIndex(i))}
+                      onClick={() => (
+                        setsingleView(true), setstartIndex(i), setphotoIndex(i)
+                      )}
                       key={`photo-${i}`}
-                    ></object>}
+                    ></object>
+                  )}
                 </React.Fragment>
               );
             })}
@@ -192,14 +225,17 @@ const AppContainer = ({ app, show }) => {
               return (
                 <React.Fragment key={photo.date + "yesterday"}>
                   {i === startIndex && <SinglePhoto />}
-                  {photo.date === "yesterday" &&
+                  {photo.date === "yesterday" && (
                     <object
                       className="photo"
                       data={photo.src}
                       type="image/jpeg"
-                      onClick={() => (setsingleView(true), setstartIndex(i), setphotoIndex(i))}
+                      onClick={() => (
+                        setsingleView(true), setstartIndex(i), setphotoIndex(i)
+                      )}
                       key={`photo-${i}`}
-                    ></object>}
+                    ></object>
+                  )}
                 </React.Fragment>
               );
             })}
@@ -210,14 +246,17 @@ const AppContainer = ({ app, show }) => {
               return (
                 <React.Fragment key={photo.date + "photo"}>
                   {i === startIndex && <SinglePhoto />}
-                  {photo.date === "thisMonth" &&
+                  {photo.date === "thisMonth" && (
                     <object
                       className="photo"
                       data={photo.src}
                       type="image/jpeg"
-                      onClick={() => (setsingleView(true), setstartIndex(i), setphotoIndex(i))}
+                      onClick={() => (
+                        setsingleView(true), setstartIndex(i), setphotoIndex(i)
+                      )}
                       key={`photo-${i}`}
-                    ></object>}
+                    ></object>
+                  )}
                 </React.Fragment>
               );
             })}
@@ -225,31 +264,32 @@ const AppContainer = ({ app, show }) => {
           <h6> Long ago</h6>
           <div className="containerGridPhotos">
             {media.photos.map((photo, i) => {
-              // por este mapeo se pasan TODAS LAS FOTOS, NO 
-              // SÓLO LAS QUE TIENEN LA FECHA "longAgo". 
+              // por este mapeo se pasan TODAS LAS FOTOS, NO
+              // SÓLO LAS QUE TIENEN LA FECHA "longAgo".
               // Esto es para que se coja bien el "i" (index), y
-              // al cambiar el estado del startIndex, coja la foto 
+              // al cambiar el estado del startIndex, coja la foto
               // adecuada. En el array de filtrado cambiaban los índices.Album
               // Se pasan por el mapeo todas las fotos, pero sólo se pintan
               // las que tienen la fecha "longAgo".
               return (
                 <React.Fragment key={"photo-LongAgo-" + i}>
                   {i === startIndex && <SinglePhoto />}
-                  {photo.date === "longAgo" &&
+                  {photo.date === "longAgo" && (
                     <object
                       className="photo"
                       data={photo.src}
                       type="image/jpeg"
-                      onClick={() => (setsingleView(true), setstartIndex(i), setphotoIndex(i))}
+                      onClick={() => (
+                        setsingleView(true), setstartIndex(i), setphotoIndex(i)
+                      )}
                       key={`photo-${i}`}
                     ></object>
-                    }
+                  )}
                 </React.Fragment>
               );
             })}
           </div>
         </div>
-
       </>
     );
   };
@@ -310,7 +350,7 @@ const AppContainer = ({ app, show }) => {
           {/* CUSTOM ALBUMS */}
           <div className="albumsContainer">
             {customAlbumsProps.map((album, i) => {
-              console.log(album.name, "nombre de album")
+              // console.log(album.name, "nombre de album");
               return (
                 <button
                   className="album"
@@ -321,18 +361,12 @@ const AppContainer = ({ app, show }) => {
                     className="photo photoAlbum "
                     data={album.src}
                     type="image/jpeg"
-
                   ></object>
                   <h5 className="albumName">{album.name}</h5>
                   <p className="numberPhotos"> {album.length} </p>
                 </button>
-              )
-            }
-
-            )
-            }
-          
-
+              );
+            })}
           </div>
         </div>
       </>
@@ -340,7 +374,6 @@ const AppContainer = ({ app, show }) => {
   };
 
   const Album = ({ activePage }) => {
-
     let startIndexVar = 0;
 
     return (
@@ -352,23 +385,23 @@ const AppContainer = ({ app, show }) => {
             {/* Al igual que en la vista de fotos por fecha, se mapean
             TODAS las fotos, para coger bien el index, aunque sólo se muestren las 
              filtradas por álbum */}
-            {media.photos.map((photo, i) => {
-                let localIndex;
-                if (photo.album === activePage) {
-                  localIndex = startIndexVar;
-                  startIndexVar++;
-                  console.log(i, "startIndexVar", startIndexVar);
-                }
-               
-                return (
-                  <React.Fragment key={"Album" + photo.album + "-" + i}>
-                    {/* Sólo se renderiza el componente SinglePhoto si el index de la foto es igual al que se ha guardado al hacer click en la foto */}
-                    {/* {photo.album === activePage ? startIndexVar++ : " "} */}
-                    {/* {console.log(startIndexVar, " startIndexVar aqui")} */}
-                    {i === startIndex && <SinglePhoto />}
-                    {console.log(i, startIndex,i === startIndex, " el startindex en albumm")}
+            {orderedPhotos.map((photo, i) => {
+              let localIndex;
+              if (photo.album === activePage) {
+                localIndex = startIndexVar;
+                startIndexVar++;
+               // console.log(i, "startIndexVar", startIndexVar);
+              }
+
+              return (
+                <React.Fragment key={"Album" + photo.album + "-" + i}>
+                  {/* Sólo se renderiza el componente SinglePhoto si el index de la foto es igual al que se ha guardado al hacer click en la foto */}
+                  {/* {photo.album === activePage ? startIndexVar++ : " "} */}
+                  {/* {console.log(startIndexVar, " startIndexVar aqui")} */}
+                  {i === startIndex && <SinglePhoto />}
                  
-                    {photo.album === activePage && 
+
+                  {photo.album === activePage && (
                     <object
                       className="photo"
                       data={photo.src}
@@ -376,45 +409,43 @@ const AppContainer = ({ app, show }) => {
                       onClick={() => {
                         setsingleView(true);
                         setstartIndex(localIndex);
-                        setphotoIndex(i);
-                   
+                        setphotoIndex(localIndex);
                       }}
                       key={`Album-${i}`}
                       // index={photo.album === activePage ? startIndexVar++ : " "}
-                    >
-                    </object>
-                    }
-                  </React.Fragment>
-                );
-              })}
+                    ></object>
+                  )}
+                </React.Fragment>
+              );
+            })}
             {activePage === "favourites" &&
-              media.photos.map((photo, i) => {
+              orderedPhotos.map((photo, i) => {
                 let localIndex;
                 if (photo.favourite === "true") {
                   localIndex = startIndexVar;
                   startIndexVar++;
-                  console.log(i, "startIndexVar fav", startIndexVar);
+                 // console.log(i, "startIndexVar fav", startIndexVar);
                 }
                 return (
                   <React.Fragment key={"FavouritesAlbum-" + i}>
                     {i === startIndex && <SinglePhoto />}
-                    { photo.favourite === "true" &&
-                    <object
-                      className="photo"
-                      data={photo.src}
-                      type="image/jpeg"
-                      onClick={() => 
-                        {setsingleView(true); 
-                        setstartIndex(localIndex);
-                        setphotoIndex(i)}}
-                      key={`photo-${i}`}
-                    ></object>
-                }
+                    {photo.favourite === "true" && (
+                      <object
+                        className="photo"
+                        data={photo.src}
+                        type="image/jpeg"
+                        onClick={() => {
+                          setsingleView(true);
+                          setstartIndex(localIndex);
+                          setphotoIndex(localIndex);
+                        }}
+                        key={`photo-${i}`}
+                      ></object>
+                    )}
                   </React.Fragment>
                 );
               })}
           </div>
-
         </div>
       </>
     );
@@ -447,7 +478,6 @@ const AppContainer = ({ app, show }) => {
         </div>
       </div>
     );
-
   };
   // 5.componente menu - albums/ fotos
   const MenuAlbum = ({ activePage }) => {
@@ -455,13 +485,11 @@ const AppContainer = ({ app, show }) => {
       <div className="navBar">
         <div className="backIcon">
           <ArrowBackIcon
-            onClick={() => setactivePage("albums")} sx={{ fontSize: 30 }}
+            onClick={() => setactivePage("albums")}
+            sx={{ fontSize: 30 }}
           />
         </div>
-        <h6>
-
-          {activePage}
-        </h6>
+        <h6>{activePage}</h6>
         <div>
           <MoreVertOutlinedIcon />
         </div>
@@ -471,33 +499,39 @@ const AppContainer = ({ app, show }) => {
 
   // componente de página SINGLE de FOTO de álbum
   const SinglePhoto = () => {
+    // array de fotos del album de la página activa
+    let albumPhotos = orderedPhotos.filter(
+      (photo) => photo.album === activePage
+    );
+
     // let ALongLongTimeAgo = "ALongLongTimeAgo"
     // FORMATEAR DATE STRING PARA TITULO
     const formatDate = (date) => {
       let dateArray = date.split(/(?=[A-Z])/);
       let dateString = dateArray.join(" ").toLowerCase();
-      return dateString
-    }
-    // console.log(formatDate(veryLongLongTimeAgo), " aqui date string")
-    console.log(startIndex , " startIndex aquiss")
-    console.log(photoIndex , " photoindex aquiss")
+      return dateString;
+    };
+    
+    // console.log(startIndex, " startIndex aquiss");
+    // console.log(photoIndex, " photoindex aquiss");
     return (
       <div
         className={singleView === true ? "singlePhotoView" : "display-none"}
-        onClick={() => 
-          {setphotoMenu(!photoMenu);
+        onClick={() => {
+          setphotoMenu(!photoMenu);
           // setstartIndex(photoIndex) // no funciona para mostrar la foto actual...
-          } 
-        }
+        }}
       >
-    
         <div className={photoMenu === true ? "photoMenu" : "photoMenuHidden"}>
           <div className="backIconSingle">
-            <ArrowBackIcon sx={{ fontSize: 30 }}
+            <ArrowBackIcon
+              sx={{ fontSize: 30 }}
               onClick={() => setsingleView(false)}
             />
           </div>
+             {/* METADATOS FOTOS */}
           <div className="titlePhotoSingle">
+         
             {/* Dependiendo de en qué álbum estemos, las imágenes
             tendrán un index u otro. 
             En el swiper no queda otra que meter el filtro antes del mapeo, 
@@ -506,86 +540,85 @@ const AppContainer = ({ app, show }) => {
             una comprobación del album activo, y se filtra según el álbum/
             o si es favorito o no. */}
 
-            {/* {console.log(favouritePhotos[photoIndex].date, " favouritePhotos")} */}
-            <p className="date"> 
-              {/* {console.log(screenShots[photoIndex].date)} */}
-            {/* { activePage === "favourites"  && 
-              
-            } */}
-              {formatDate(media.photos[photoIndex].date)}
-            </p>
-            <p className="location">  
-            {/* { activePage === "favourites"  && 
-              formatDate(media.photos[photoIndex].location)
-            }
+            <p className="date">
+              {/* // ACTIVEPAGE == PHOTOS */}
+              {activePage === "photos" && formatDate(orderedPhotos[photoIndex].date)}
 
-            {
-              activePage === "customAlbum2" &&
-              formatDate(media.photos[photoIndex].date)
-            } */}
-            {formatDate(media.photos[photoIndex].location)}
+              {/* // ACTIVEPAGE == FAVOURITES */}
+              {activePage === "favourites" &&
+                formatDate(favouritePhotos[photoIndex].date)}
+
+              {/* // ACTIVEPAGE == some ALBUM */}
+              {albums.includes(activePage) && formatDate(albumPhotos[photoIndex].date)}
+            
+            </p>
+            <p className="location">
+              {/* // ACTIVEPAGE == PHOTOS */}
+              {activePage === "photos" && orderedPhotos[photoIndex].location}
+
+              {/* // ACTIVEPAGE == FAVOURITES */}
+              {activePage === "favourites" &&
+                favouritePhotos[photoIndex].location}
+
+              {/* // ACTIVEPAGE == some ALBUM */}
+              {albums.includes(activePage) && albumPhotos[photoIndex].location}
             </p>
           </div>
         </div>
         <Swiper
-          // no deja pasar al siguiente slide en combinación con setphotoIndex(swiper.activeIndex)
-          // initialSlide={startIndex}
-          // no coge bien el index de customAlbum 
+          // foto con la que comienza el slider
           initialSlide={photoIndex}
-          // IDEA para solucionar problema: GUARDAR INDICE EN PHOTOINDEX AL CLICKAR, QUE TAMBIÉN SEA LOCALINDEX
           spaceBetween={50}
           slidesPerView={1}
           // con setPhotoIndex(swiper.realIndex)
-          onSlideChange={(swiper) => { console.log(swiper.activeIndex, " swiper realIndex aquis", setphotoIndex(swiper.activeIndex));   }}
-          // sin setPhotoIndex(swiper.realIndex)
-          // onSlideChange={(swiper) => { console.log(swiper.activeIndex, " swiper realIndex aquis" )}}
+          onSlideChange={(swiper) => {
+            // console.log(swiper.activeIndex,  " swiper realIndex aquis");
+            setphotoIndex(swiper.activeIndex)
+            ;
+          }}
+
           onSwiper={(swiper) => console.log(swiper)}
         >
-
           {/* MAPEO ÁLBUMES CON LA COMPROBACIÓN DE: SI LA PÁGINA ACTIVA COINCIDE 
           CON EL ÁLBUM, SE MUESTRA EL SIGUIENTE MAPEO DE FOTOS DE ESE ÁLBUM */}
           {/* PÁGINA DE FOTOS */}
-          {
-            activePage === "photos" &&
-            media.photos.map((photo, i) => {
+          {activePage === "photos" &&
+            orderedPhotos.map((photo, i) => {
               return (
                 <React.Fragment key={"singleAll-" + i}>
-                  <SwiperSlide >
-                    {console.log(photoIndex, " photoIndex", i)}
+                  <SwiperSlide>
+                    {/* {console.log(photoIndex, " photoIndex", i)} */}
                     <object
                       key={`photo-${i}`}
                       className="photoSingle"
                       data={photo.src}
                       type="image/jpeg"
                       // onClick={() => setphotoIndex(i)}
-                    // onClick={()=> { if (photoIndex !== i) {setphotoIndex(i)}}} // esto no sirve porque parpadea. guardar el índice de la foto que se ha cargado para poder mostrar su fecha y otros metadatos
-                    >
-
-              
-                    </object>
-                  </SwiperSlide>
-                </React.Fragment>
-              );
-            })
-          }
-          {/* PÁGINA DE ÁLBUMES */}
-          {media.photos
-            .filter((photo) => photo.album === activePage)
-            .map((photo, i) => {
-              return (
-                <React.Fragment key={"singleInAlbum-" + i}>
-                  <SwiperSlide >
-                    <object
-                      key={`photo-${i}`}
-                      className="photoSingle"
-                      data={photo.src}
-                      type="image/jpeg"
+                      // onClick={()=> { if (photoIndex !== i) {setphotoIndex(i)}}} // esto no sirve porque parpadea. guardar el índice de la foto que se ha cargado para poder mostrar su fecha y otros metadatos
                     ></object>
-                
                   </SwiperSlide>
                 </React.Fragment>
               );
-            })
+            })}
+          {/* PÁGINA DE ÁLBUMES */}
+
+          {
+            orderedPhotos
+              .filter((photo) => photo.album === activePage)
+              .map((photo, i) => {
+                return (
+                  <React.Fragment key={"singleInAlbum-" + i}>
+                    <SwiperSlide>
+                      <object
+                        key={`photo-${i}`}
+                        className="photoSingle"
+                        data={photo.src}
+                        type="image/jpeg"
+                      ></object>
+                    </SwiperSlide>
+                  </React.Fragment>
+                );
+              })
 
             // })
           }
@@ -594,25 +627,29 @@ const AppContainer = ({ app, show }) => {
             favouritePhotos.map((photo, i) => {
               return (
                 <React.Fragment key={"singleInFav" + photo[i]}>
-                  <SwiperSlide >
+                  <SwiperSlide>
                     <object
                       key={`photo-${i}`}
                       className="photoSingle"
                       data={photo.src}
                       type="image/jpeg"
                     ></object>
-                     {/* <div className="photoMenu">
+                    {/* <div className="photoMenu">
                         <p className="date">{formatDate(photo.date)}</p>
                         <p className="location">{photo.location}</p>
                       </div> */}
                   </SwiperSlide>
-                 
                 </React.Fragment>
               );
             })}
         </Swiper>
-        <div className={photoMenu === true ? "btnGroupSinglePhoto" : "btnGroupSinglePhotoHidden"}>
-
+        <div
+          className={
+            photoMenu === true
+              ? "btnGroupSinglePhoto"
+              : "btnGroupSinglePhotoHidden"
+          }
+        >
           <div className="btn-icon-single-photo">
             <ShareOutlined sx={{ fontSize: 36 }} />
           </div>
@@ -633,7 +670,7 @@ const AppContainer = ({ app, show }) => {
     );
   };
 
-  // renderizado de la app
+    // renderizado de la app
   return (
     <div className={"app-wrapper " + clstring} id={clstring} data-open={show}>
       <div className="app-inner-wrapper photo-page">{renderContent()}</div>

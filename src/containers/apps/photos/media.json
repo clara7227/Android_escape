@@ -1,191 +1,241 @@
-
 {
-    "albums": {
-        "album1": {
-            "src": "//1er objeto de fotos",
-            "title": "",
-            "number": ""
-        }
-    },
-    "photos": [
-        {
-            "src": "img/asset/photos/dos.jpg",
-            "title": "",
-            "date": "today",
-            "location": "Kreuzberg, Berlin, 10967",
-            "favourite": "false",
-            "album": "camera"
-        },
-
-    
-        {
-            "src": "img/asset/photos/tres.jpg",
-            "title": "",
-            "date": "today",
-            "location": "Kreuzberg, Berlin, 10967",
-            "favourite": "false",
-            "album": "camera"
-        },
-        {
-            "src": "img/asset/photos/cuatro.jpg",
-            "title": "",
-            "date": "yesterday",
-            "location": "Kreuzberg, Berlin, 10967",
-            "favourite": "false",
-            "album": "camera"
-        },
   
-        {
-            "src": "img/asset/photos/cinco.jpg",
-            "title": "",
-            "date": "yesterday",
-            "location": "Kreuzberg, Berlin, 10967",
-            "favourite": "false",
-            "album": "camera"
-        },
-        {
-            "src": "img/asset/photos/seis.jpg",
-            "title": "",
-            "date": "yesterday",
-            "location": "Kreuzberg, Berlin, 10967",
-            "favourite": "false",
-            "album": "NUEVO ALBUM"
-        },
-        {
-            "src": "img/asset/photos/siete.jpg",
-            "title": "",
-            "date": "yesterday",
-            "location": "Kreuzberg, Berlin, 10967",
-            "favourite": "true",
-            "album": "camera"
-        },
-        {
-            "src": "img/asset/photos/ocho.jpg",
-            "title": "",
-            "date": "thisMonth",
-            "location": "Kreuzberg, Berlin, 10967",
-            "favourite": "false",
-            "album": "screenshots"
-        },
-        {
-            "src": "img/asset/photos/diecinueve.png",
-            "title": "",
-            "date": "thisMonth",
-            "location": "La Rambla, Barcelona, 08007",
-            "favourite": "false",
-            "album": "screenshots"
-        },
-        {
-            "src": "img/asset/photos/veinte.png",
-            "title": "",
-            "date": "thisMonth",
-            "location": "La Rambla, Barcelona, 08007",
-            "favourite": "true",
-            "album": "screenshots"
-        },
-        {
-            "src": "img/asset/photos/diez.jpg",
-            "title": "",
-            "date": "longAgo",
-            "location": "Kreuzberg, Berlin, 10967",
-            "favourite": "false",
-            "album": "albumCustom"
-        },
-        {
-            "src": "img/asset/photos/once.jpg",
-            "title": "",
-            "date": "longAgo",
-            "location": "Kreuzberg, Berlin, 10967",
-            "favourite": "false",
-            "album": "albumCustom"
-        },
-        {
-            "src": "img/asset/photos/doce.png",
-            "title": "",
-            "date": "longAgo",
-            "location": "Kreuzberg, Berlin, 10967",
-            "favourite": "true",
-            "album": "albumCustom"
-        },
-        {
-            "src": "img/asset/photos/uno.jpg",
-            "title": "",
-            "date": "longAgo",
-            "location": "Aluche, Madrid, 28047 ",
-            "favourite": "false",
-            "album": "random_album"
-        },
-        {
-            "src": "img/asset/photos/trece.jpg",
-            "title": "",
-            "date": "longAgo",
-            "location": "Aluche, Madrid, 28047 ",
-            "favourite": "false",
-            "album": "random_album"
-        },
-        {
-            "src": "img/asset/photos/catorce.jpg",
-            "title": "",
-            "date": "longAgo",
-            "location": "Aluche, Madrid, 28047 ",
-            "favourite": "false",
-            "album": "random_album"
-        },
-        {
-            "src": "img/asset/photos/quince.jpg",
-            "title": "",
-            "date": "longAgo",
-            "location": "Aluche, Madrid, 28047 ",
-            "favourite": "false",
-            "album": "random_album"
-        },
-        {
-            "src": "img/asset/photos/dieciseis.jpg",
-            "title": "",
-            "date": "longAgo",
-            "location": "Aluche, Madrid, 28047 ",
-            "favourite": "false",
-            "album": "random_album"
-        },
-        {
-            "src": "img/asset/photos/diecisiete.jpg",
-            "title": "",
-            "date": "longAgo",
-            "location": "Aluche, Madrid, 28047 ",
-            "favourite": "true",
-            "album": "random_album"
-        },
-        {
-            "src": "img/asset/photos/dieciocho.jpg",
-            "title": "",
-            "date": "longAgo",
-            "location": "Aluche, Madrid, 28047 ",
-            "favourite": "false",
-            "album": "random_album"
-        },
-        {
-            "src": "img/asset/photos/veinticuatro.jpg",
-            "title": "",
-            "date": "yesterday",
-            "location": "Aluche, Madrid, 28047 ",
-            "favourite": "false",
-            "album": "random_album"
-        },
-        {
-            "src": "img/asset/photos/veintidos.png",
-            "title": "",
-            "date": "yesterday",
-            "location": "Aluche, Madrid, 28047 ",
-            "favourite": "false",
-            "album": "random_album"
-        },
-        {
-            "src": "img/asset/photos/veintiuno.png",
-            "title": "",
-            "date": "thisMonth",
-            "location": "Aluche, Madrid, 28047 ",
-            "favourite": "true",
-            "album": "random_album"
-        }
-    ]
+  "photos": [
+    {
+      "src": "img/asset/photos/dos.jpg",
+      "title": "",
+      "date": "thisMonth",
+      "location": "Kreuzberg, Berlin, 10967",
+      "favourite": "false",
+      "album": "camera",
+      "alt": "mujer cielo"
+    },
+
+    {
+      "src": "img/asset/photos/tres.jpg",
+      "title": "",
+      "date": "today",
+      "location": "Kreuzberg, Berlin, 10967",
+      "favourite": "false",
+      "album": "random_album",
+      "alt": "desierto"
+    },
+    {
+      "src": "img/asset/photos/cuatro.jpg",
+      "title": "",
+      "date": "yesterday",
+      "location": "Kreuzberg, Berlin, 10967",
+      "favourite": "false",
+      "album": "camera",
+      "alt": "cielo nubes prado"
+    },
+
+    {
+      "src": "img/asset/photos/cinco.jpg",
+      "title": "",
+      "date": "today",
+      "location": "Kreuzberg, Berlin, 10967",
+      "favourite": "false",
+      "album": "camera",
+      "alt": "coche"
+    },
+    {
+      "src": "img/asset/photos/seis.jpg",
+      "title": "",
+      "date": "today",
+      "location": "Kreuzberg, Berlin, 10967",
+      "favourite": "false",
+      "album": "NUEVO ALBUM",
+      "alt": "puesta sol amarilla"
+    },
+    {
+      "src": "img/asset/photos/siete.jpg",
+      "title": "",
+      "date": "yesterday",
+      "location": "Kreuzberg, Berlin, 10967",
+      "favourite": "true",
+      "album": "camera",
+      "alt": "grafiti fosforescente"
+    },
+    {
+      "src": "img/asset/photos/ocho.jpg",
+      "title": "",
+      "date": "thisMonth",
+      "location": "Kreuzberg, Berlin, 10967",
+      "favourite": "false",
+      "album": "screenshots",
+      "alt": "arte abstracto azul verde fosforescente"
+    },
+    {
+      "src": "img/asset/photos/diecinueve.png",
+      "title": "",
+      "date": "thisMonth",
+      "location": "La Rambla, Barcelona, 08007",
+      "favourite": "false",
+      "album": "screenshots",
+      "alt": "espacio futurista diáfano"
+    },
+    {
+      "src": "img/asset/photos/veinte.png",
+      "title": "",
+      "date": "thisMonth",
+      "location": "La Rambla, Barcelona, 08007",
+      "favourite": "true",
+      "album": "screenshots",
+      "alt": "espacio futurista ciudad rosa fosforescente"
+    },
+    {
+      "src": "img/asset/photos/diez.jpg",
+      "title": "",
+      "date": "longAgo",
+      "location": "Kreuzberg, Berlin, 10967",
+      "favourite": "false",
+      "album": "albumCustom",
+      "alt": "amarillo fosforescente mosaico flores"
+    },
+    {
+      "src": "img/asset/photos/once.jpg",
+      "title": "",
+      "date": "longAgo",
+      "location": "Kreuzberg, Berlin, 10967",
+      "favourite": "false",
+      "album": "albumCustom",
+      "alt": "velocidad rosa morado fondo oscuro rectangulos"
+    },
+    {
+      "src": "img/asset/photos/doce.PNG",
+      "title": "",
+      "date": "longAgo",
+      "location": "Kreuzberg, Berlin, 10967",
+      "favourite": "true",
+      "album": "albumCustom",
+      "alt": "retrato cara tres cuartos amarillo naranja"
+    },
+    {
+      "src": "img/asset/photos/uno.jpg",
+      "title": "",
+      "date": "longAgo",
+      "location": "El Pozo, Madrid, 28047 ",
+      "favourite": "false",
+      "album": "random_album",
+      "alt": "pollito astronauta"
+    },
+    {
+      "src": "img/asset/photos/trece.jpg",
+      "title": "",
+      "date": "longAgo",
+      "location": "Aluche, Madrid, 28047 ",
+      "favourite": "false",
+      "album": "camera",
+      "alt": "cartel amarillo ciclista"
+    },
+    {
+      "src": "img/asset/photos/catorce.jpg",
+      "title": "",
+      "date": "today",
+      "location": "Aluche, Madrid, 28047 ",
+      "favourite": "false",
+      "album": "random_album",
+      "alt": "kiwis"
+    },
+    {
+      "src": "img/asset/photos/quince.jpg",
+      "title": "",
+      "date": "longAgo",
+      "location": "Aluche, Madrid, 28047 ",
+      "favourite": "false",
+      "album": "random_album",
+      "alt": "rio montañas"
+    },
+    {
+      "src": "img/asset/photos/dieciseis.jpg",
+      "title": "",
+      "date": "longAgo",
+      "location": "Aluche, Madrid, 28047 ",
+      "favourite": "false",
+      "album": "random_album",
+      "alt": "mamá con nene"
+    },
+    {
+      "src": "img/asset/photos/diecisiete.jpg",
+      "title": "",
+      "date": "longAgo",
+      "location": "Aluche, Madrid, 28047 ",
+      "favourite": "true",
+      "album": "random_album",
+      "alt": "polilla"
+    },
+    {
+      "src": "img/asset/photos/dieciocho_2.JPG",
+      "title": "",
+      "date": "longAgo",
+      "location": "Aluche, Madrid, 28047 ",
+      "favourite": "false",
+      "album": "random_album",
+      "alt": "ilustración fondo negro, plantas y animales"
+    },
+    {
+      "src": "img/asset/photos/veinticuatro.jpg",
+      "title": "",
+      "date": "yesterday",
+      "location": "Pinto, Madrid, 28017 ",
+      "favourite": "false",
+      "album": "random_album",
+      "alt": "hoja"
+    },
+    {
+      "src": "img/asset/photos/veintidos.png",
+      "title": "",
+      "date": "yesterday",
+      "location": "Salamanca, Madrid, 28047 ",
+      "favourite": "false",
+      "album": "random_album",
+      "alt": "calle ilustración tonos calidos y rosas"
+    },
+    {
+      "src": "img/asset/photos/veintiuno.png",
+      "title": "",
+      "date": "thisMonth",
+      "location": "Aluche, Madrid, 28047 ",
+      "favourite": "true",
+      "album": "random_album",
+      "alt": "keypad futurista"
+    },
+    {
+      "src": "img/asset/photos/veintitres.JPG",
+      "title": "",
+      "date": "thisMonth",
+      "location": "China, Beijing, 00147 ",
+      "favourite": "true",
+      "album": "random_album",
+      "alt": "dragon"
+    },
+    {
+      "src": "img/asset/photos/veinticinco.jpg",
+      "title": "",
+      "date": "longAgo",
+      "location": "Aluche, Madrid, 28047 ",
+      "favourite": "true",
+      "album": "NUEVO ALBUM",
+      "alt": "casa montaña ilustración"
+    },
+    {
+        "src": "img/asset/photos/veintiseis.jpg",
+        "title": "",
+        "date": "longAgo",
+        "location": "Quinta de los Molinos, Madrid, 28047 ",
+        "favourite": "false",
+        "album": "random_album",
+        "alt": "rosa fotografía desenfocada"
+      },
+      {
+        "src": "img/asset/photos/veintisiete.jpg",
+        "title": "",
+        "date": "longAgo",
+        "location": "Aluche, Madrid, 28047 ",
+        "favourite": "true",
+        "album": "camera",
+        "alt": "limon"
+      }
+  ]
 }
