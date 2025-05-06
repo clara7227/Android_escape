@@ -1,12 +1,6 @@
 
 {
-    "albums": {
-        "album1": {
-            "src": "//1er objeto de fotos",
-            "title": "",
-            "number": ""
-        }
-    },
+
     "photos": [
         {
             "src": "img/asset/photos/dos.jpg",
@@ -16,8 +10,6 @@
             "favourite": "false",
             "album": "camera"
         },
-
-    
         {
             "src": "img/asset/photos/tres.jpg",
             "title": "",
