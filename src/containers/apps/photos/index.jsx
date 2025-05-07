@@ -46,7 +46,6 @@ const AppContainer = ({ app, show }) => {
   const clstring = `${app.payload}-wrapper`;
   const [activePage, setactivePage] = useState("photos"); // "photos" es el estado inicial
   const [singleView, setsingleView] = useState(false); // estado para vista de una sola foto
-  const [startIndex, setstartIndex] = useState(0); // estado para guardar el índice de la foto que se clickó en la vista de álbum, para mostrarla la primera en las slides
   const [photoMenu, setphotoMenu] = useState(true); // estado para el menú de la foto, que se activa al clickar en una foto
   const [photoIndex, setphotoIndex] = useState(0); // estado para guardar el índice de la foto que se ha cargado en la vista de álbum, para mostrar su fecha y otros metadatos
 
@@ -112,6 +111,10 @@ const AppContainer = ({ app, show }) => {
     (photo) => photo.favourite === "true");
   let screenShots = orderedPhotos.filter(
     (photo) => photo.album === "screenshots");
+  // array de fotos del album de la página activa
+  let albumPhotos = orderedPhotos.filter(
+    (photo) => photo.album === activePage
+  );
 
   // consolas
   // console.log(customAlbums);
@@ -203,14 +206,14 @@ const AppContainer = ({ app, show }) => {
             {media.photos.map((photo, i) => {
               return (
                 <React.Fragment key={photo.date + "today"}>
-                  {i === startIndex && <SinglePhoto />}
+                  {i === photoIndex && <SinglePhoto />}
                   {photo.date === "today" && (
                     <object
                       className="photo"
                       data={photo.src}
                       type="image/jpeg"
                       onClick={() => (
-                        setsingleView(true), setstartIndex(i), setphotoIndex(i)
+                        setsingleView(true), setphotoIndex(i)
                       )}
                       key={`photo-${i}`}
                     ></object>
@@ -224,14 +227,14 @@ const AppContainer = ({ app, show }) => {
             {media.photos.map((photo, i) => {
               return (
                 <React.Fragment key={photo.date + "yesterday"}>
-                  {i === startIndex && <SinglePhoto />}
+                  {i === photoIndex && <SinglePhoto />}
                   {photo.date === "yesterday" && (
                     <object
                       className="photo"
                       data={photo.src}
                       type="image/jpeg"
                       onClick={() => (
-                        setsingleView(true), setstartIndex(i), setphotoIndex(i)
+                        setsingleView(true), setphotoIndex(i)
                       )}
                       key={`photo-${i}`}
                     ></object>
@@ -245,14 +248,14 @@ const AppContainer = ({ app, show }) => {
             {media.photos.map((photo, i) => {
               return (
                 <React.Fragment key={photo.date + "photo"}>
-                  {i === startIndex && <SinglePhoto />}
+                  {i === photoIndex && <SinglePhoto />}
                   {photo.date === "thisMonth" && (
                     <object
                       className="photo"
                       data={photo.src}
                       type="image/jpeg"
                       onClick={() => (
-                        setsingleView(true), setstartIndex(i), setphotoIndex(i)
+                        setsingleView(true),  setphotoIndex(i)
                       )}
                       key={`photo-${i}`}
                     ></object>
@@ -267,20 +270,20 @@ const AppContainer = ({ app, show }) => {
               // por este mapeo se pasan TODAS LAS FOTOS, NO
               // SÓLO LAS QUE TIENEN LA FECHA "longAgo".
               // Esto es para que se coja bien el "i" (index), y
-              // al cambiar el estado del startIndex, coja la foto
+              // al cambiar el estado del photoIndex, coja la foto
               // adecuada. En el array de filtrado cambiaban los índices.Album
               // Se pasan por el mapeo todas las fotos, pero sólo se pintan
               // las que tienen la fecha "longAgo".
               return (
                 <React.Fragment key={"photo-LongAgo-" + i}>
-                  {i === startIndex && <SinglePhoto />}
+                  {i === photoIndex && <SinglePhoto />}
                   {photo.date === "longAgo" && (
                     <object
                       className="photo"
                       data={photo.src}
                       type="image/jpeg"
                       onClick={() => (
-                        setsingleView(true), setstartIndex(i), setphotoIndex(i)
+                        setsingleView(true), setphotoIndex(i)
                       )}
                       key={`photo-${i}`}
                     ></object>
@@ -294,6 +297,7 @@ const AppContainer = ({ app, show }) => {
     );
   };
   const Albums = () => {
+    
     return (
       <>
         <MenuMain />
@@ -374,31 +378,24 @@ const AppContainer = ({ app, show }) => {
   };
 
   const Album = ({ activePage }) => {
-    let startIndexVar = 0;
 
     return (
       <>
         <MenuAlbum activePage={activePage} />
+
         <div className="container-page">
           <div className="containerGridPhotos">
             {/* mapeo de fotos por album */}
             {/* Al igual que en la vista de fotos por fecha, se mapean
             TODAS las fotos, para coger bien el index, aunque sólo se muestren las 
              filtradas por álbum */}
-            {orderedPhotos.map((photo, i) => {
-              let localIndex;
-              if (photo.album === activePage) {
-                localIndex = startIndexVar;
-                startIndexVar++;
-               // console.log(i, "startIndexVar", startIndexVar);
-              }
-
-              return (
+            {albumPhotos.map((photo, i) => {
+                            return (
                 <React.Fragment key={"Album" + photo.album + "-" + i}>
                   {/* Sólo se renderiza el componente SinglePhoto si el index de la foto es igual al que se ha guardado al hacer click en la foto */}
                   {/* {photo.album === activePage ? startIndexVar++ : " "} */}
                   {/* {console.log(startIndexVar, " startIndexVar aqui")} */}
-                  {i === startIndex && <SinglePhoto />}
+                  {i === photoIndex && <SinglePhoto />}
                  
 
                   {photo.album === activePage && (
@@ -408,27 +405,21 @@ const AppContainer = ({ app, show }) => {
                       type="image/jpeg"
                       onClick={() => {
                         setsingleView(true);
-                        setstartIndex(localIndex);
-                        setphotoIndex(localIndex);
+                        setphotoIndex(i);
                       }}
                       key={`Album-${i}`}
-                      // index={photo.album === activePage ? startIndexVar++ : " "}
+                   
                     ></object>
                   )}
                 </React.Fragment>
               );
             })}
             {activePage === "favourites" &&
-              orderedPhotos.map((photo, i) => {
-                let localIndex;
-                if (photo.favourite === "true") {
-                  localIndex = startIndexVar;
-                  startIndexVar++;
-                 // console.log(i, "startIndexVar fav", startIndexVar);
-                }
+              favouritePhotos.map((photo, i) => {
+                  
                 return (
                   <React.Fragment key={"FavouritesAlbum-" + i}>
-                    {i === startIndex && <SinglePhoto />}
+                    {i === photoIndex && <SinglePhoto />}
                     {photo.favourite === "true" && (
                       <object
                         className="photo"
@@ -436,8 +427,7 @@ const AppContainer = ({ app, show }) => {
                         type="image/jpeg"
                         onClick={() => {
                           setsingleView(true);
-                          setstartIndex(localIndex);
-                          setphotoIndex(localIndex);
+                          setphotoIndex(i);
                         }}
                         key={`photo-${i}`}
                       ></object>
@@ -499,12 +489,7 @@ const AppContainer = ({ app, show }) => {
 
   // componente de página SINGLE de FOTO de álbum
   const SinglePhoto = () => {
-    // array de fotos del album de la página activa
-    let albumPhotos = orderedPhotos.filter(
-      (photo) => photo.album === activePage
-    );
 
-    // let ALongLongTimeAgo = "ALongLongTimeAgo"
     // FORMATEAR DATE STRING PARA TITULO
     const formatDate = (date) => {
       let dateArray = date.split(/(?=[A-Z])/);
@@ -512,14 +497,13 @@ const AppContainer = ({ app, show }) => {
       return dateString;
     };
     
-    // console.log(startIndex, " startIndex aquiss");
     // console.log(photoIndex, " photoindex aquiss");
     return (
       <div
         className={singleView === true ? "singlePhotoView" : "display-none"}
         onClick={() => {
           setphotoMenu(!photoMenu);
-          // setstartIndex(photoIndex) // no funciona para mostrar la foto actual...
+        
         }}
       >
         <div className={photoMenu === true ? "photoMenu" : "photoMenuHidden"}>
@@ -532,6 +516,7 @@ const AppContainer = ({ app, show }) => {
              {/* METADATOS FOTOS */}
           <div className="titlePhotoSingle">
          
+           
             {/* Dependiendo de en qué álbum estemos, las imágenes
             tendrán un index u otro. 
             En el swiper no queda otra que meter el filtro antes del mapeo, 
@@ -541,6 +526,7 @@ const AppContainer = ({ app, show }) => {
             o si es favorito o no. */}
 
             <p className="date">
+              
               {/* // ACTIVEPAGE == PHOTOS */}
               {activePage === "photos" && formatDate(orderedPhotos[photoIndex].date)}
 
@@ -580,7 +566,8 @@ const AppContainer = ({ app, show }) => {
           onSwiper={(swiper) => console.log(swiper)}
         >
           {/* MAPEO ÁLBUMES CON LA COMPROBACIÓN DE: SI LA PÁGINA ACTIVA COINCIDE 
-          CON EL ÁLBUM, SE MUESTRA EL SIGUIENTE MAPEO DE FOTOS DE ESE ÁLBUM */}
+          CON EL ÁLBUM, SE MUESTRA EL SIGUIENTE DE FOTOS DE ESE ÁLBUM */}
+          
           {/* PÁGINA DE FOTOS */}
           {activePage === "photos" &&
             orderedPhotos.map((photo, i) => {
@@ -593,8 +580,7 @@ const AppContainer = ({ app, show }) => {
                       className="photoSingle"
                       data={photo.src}
                       type="image/jpeg"
-                      // onClick={() => setphotoIndex(i)}
-                      // onClick={()=> { if (photoIndex !== i) {setphotoIndex(i)}}} // esto no sirve porque parpadea. guardar el índice de la foto que se ha cargado para poder mostrar su fecha y otros metadatos
+                    
                     ></object>
                   </SwiperSlide>
                 </React.Fragment>
@@ -634,10 +620,7 @@ const AppContainer = ({ app, show }) => {
                       data={photo.src}
                       type="image/jpeg"
                     ></object>
-                    {/* <div className="photoMenu">
-                        <p className="date">{formatDate(photo.date)}</p>
-                        <p className="location">{photo.location}</p>
-                      </div> */}
+                
                   </SwiperSlide>
                 </React.Fragment>
               );
