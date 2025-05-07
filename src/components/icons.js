@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const NetworkIcon = (props) => {
   // network icon that is responsive to a status props indicating network strength
   const status = props.status || 4;

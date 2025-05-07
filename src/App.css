@@ -1,6 +1,15 @@
 .App {
   --stbar-h: 2.4em;
 }
+
+.white-contrast-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8); 
+  z-index: 1;
+  pointer-events: none;
+}
+
 .app-container {
   position: absolute;
   top: 50%;
@@ -12,7 +21,12 @@
   max-width: 400px;
   padding: 20px;
 }
+.app-container>h1 {
+  color: #fff;
+  text-shadow: 0 0 5px black;
+  font-size: 1.4rem;
 
+}
 
 *[data-ninja="true"] {
   pointer-events: none;

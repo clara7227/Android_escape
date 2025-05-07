@@ -6,7 +6,7 @@ import {Icon} from 'components/utils'
 import {dispatchAction, dispatchAct, openAppPage} from 'store/actions';
 import './widget.scss'
 
-const ClockDate = (props)=>{
+export const ClockDate = (props)=>{
   const date = useSelector((state) => state.global.date);
   var datestring = new Date(date.year, date.month, date.day).toLocaleString("en-us",{
     weekday: "short", day: "numeric", month: props.datemin?"short":"long"

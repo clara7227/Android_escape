@@ -68,7 +68,7 @@ body {
 }
 
 .status-bar {
-  // position: absolute;
+  position: relative;
   height: var(--stbar-h);
   width: 100%;
   display: flex;
@@ -80,6 +80,8 @@ body {
   justify-content: space-between;
   transition: background-color 200ms ease-in-out;
   color: var(--txt-col);
+  text-shadow: none;
+
 
   &[data-invert="true"] {
     color: var(--comp-txt);
