@@ -23,7 +23,7 @@ const LockManager = ({ onUnlock }) => {
     return (
       <div className="app-container fade-in">
         <h1>Enter passcode to unlock</h1>
-        {error && <p style={{ color: 'red' }}>Incorrect passcode ❌</p>}
+        {error && <p className='text-incorrect'>Incorrect passcode <small>❌</small></p>}
         <UnlockScreen
           onUnlock={handlePinUnlock}
           hasError={error}

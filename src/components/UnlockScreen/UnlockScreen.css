@@ -58,26 +58,26 @@
   .keypad button {
     height: 60px;
     font-size: 1.5rem;
-    border: solid 2px #2563eb;
-    background-color: #2564eb3f;
+    border: solid 2px #333438;
+    background-color: #31364279;
     color: white;
     border-radius: 10rem;
     cursor: pointer;
     transition: background-color 0.2s;
   }
   
-  .keypad button:hover {
-    background-color: #1b4cb6;
-  }
+  /* .keypad button:hover {
+    background-color: #292c33;
+  } */
   
   .keypad .backspace {
     width: 60px;
     height: 60px;
     grid-column: span 3;
-    background-color: #5c5c5c5c;
+    background-color: #16181b93;
     border-radius: 35px;
-    border: solid 2px #ffffff87;
-
+    border: solid 2px #333438;
+    color: #c2c2c2;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -103,4 +103,11 @@
     overflow: hidden;
     align-items: end;
 }  
-  
+.text-incorrect {
+    color: #ff3636;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 500;
+    text-shadow: 0 0 5px black;
+}
